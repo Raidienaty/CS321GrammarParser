@@ -7,7 +7,7 @@ shopt -s extglob
 rm -R .antlr
 
 set -e
-rm -v !("${grammar}"|"README.md"|"recompile.sh")
+rm -v !("${grammar}"|"README.md"|"recompile.sh"|".gitignore")
 
 
 java -Xmx500M -cp ${antlr} org.antlr.v4.Tool ${grammar}
