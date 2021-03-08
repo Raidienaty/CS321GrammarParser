@@ -1,5 +1,15 @@
 // Define a grammar called Hello
 grammar Hello;
-r  : 'hello' ID ;         // match keyword hello followed by an identifier
-ID : [a-z]+ ;             // match lower-case identifiers
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+
+//Tokens
+HELLO: 'hello';
+ADD: '+';
+NUMBER: [0-9]+;
+ID : [a-zA-Z]+;           
+WHITESPACE : [ \t\r\n]+ -> skip; 
+
+start : expression;
+
+expression : NUMBER
+           | left=expression operator=ADD right=expression
+           ;
