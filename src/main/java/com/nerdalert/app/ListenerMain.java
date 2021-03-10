@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import jdk.nashorn.internal.parser.Lexer;
 import parser.CalculationLexer;
-import parser.CalculatorListener;
+import com.nerdalert.app.parser.CalculationListener;
 import parser.CalculatorParser;
 
 public class ListenerMain {
