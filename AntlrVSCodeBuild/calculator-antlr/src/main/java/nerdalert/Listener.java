@@ -9,28 +9,20 @@ public class Listener extends CalculatorBaseListener
     private Stack<Double> stack = new Stack<>();
 
     @Override
-    public void enterAddition(CalculatorParser.AdditionContext additionContext)
+    public void exitAddition(CalculatorParser.AdditionContext additionContext)
     {
-        /*
-        if (stack.empty())
-            System.out.println("Empty!");
-
         Double num1 = stack.pop();
         Double num2 = stack.pop();
 
-        stack.push(num1 + num2);*/
-
-        System.out.println("In addition");
+        stack.push(num1 + num2);
     }
 
     @Override
-    public void enterNumber(CalculatorParser.NumberContext numberContext)
+    public void exitNumber(CalculatorParser.NumberContext numberContext)
     {
-        // Double number = Double.parseDouble(numberContext.getText());
+        Double number = Double.parseDouble(numberContext.getText());
 
-        // stack.push(number);
-
-        System.out.println("In number");
+        stack.push(number);
     }
 
     public Double getResult()

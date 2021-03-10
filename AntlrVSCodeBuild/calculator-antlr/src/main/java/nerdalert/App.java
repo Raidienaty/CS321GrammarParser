@@ -20,23 +20,9 @@ public class App
 {
     public static void main( String[] args )
     {
-
-        /*
-        //File fileObj = new File("calculator-antlr/src/main/java/nerdalert/input.txt");
-        //Scanner scannerIN = new Scanner(fileObj);
-
-        while (scannerIN.hasNextLine())
-        {
-            String line = scannerIN.nextLine();
-
-            System.out.println( line );
-        }
-
-        scannerIN.close();*/
-
         try
         {
-            CharStream inputCharStream = CharStreams.fromFileName("calculator-antlr/src/main/java/nerdalert/input.txt"); //new ANTLRFileStream("calculator-antlr/src/main/java/nerdalert/input.txt");
+            CharStream inputCharStream = CharStreams.fromFileName("calculator-antlr/src/main/java/nerdalert/input.txt");
             
             Lexer lexer = new CalculatorLexer(inputCharStream);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -47,13 +33,10 @@ public class App
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.walk(listener, parseTree);
 
-            System.out.print(listener.getResult());
+            System.out.print(listener.getResult() + "\n");
 
         }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        } catch (IOException e) {
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
