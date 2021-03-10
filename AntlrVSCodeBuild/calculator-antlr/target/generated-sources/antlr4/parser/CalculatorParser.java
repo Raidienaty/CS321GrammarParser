@@ -1,4 +1,5 @@
-// Generated from Calculator.g4 by ANTLR 4.9
+// Generated from parser/Calculator.g4 by ANTLR 4.9
+package parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -128,10 +129,20 @@ public class CalculatorParser extends Parser {
 	}
 
 	public static class ExpressionContext extends ParserRuleContext {
+		public ExpressionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expression; }
+	 
+		public ExpressionContext() { }
+		public void copyFrom(ExpressionContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class AdditionContext extends ExpressionContext {
 		public ExpressionContext left;
 		public Token operator;
 		public ExpressionContext right;
-		public TerminalNode NUMBER() { return getToken(CalculatorParser.NUMBER, 0); }
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
@@ -139,17 +150,26 @@ public class CalculatorParser extends Parser {
 			return getRuleContext(ExpressionContext.class,i);
 		}
 		public TerminalNode ADD() { return getToken(CalculatorParser.ADD, 0); }
-		public ExpressionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_expression; }
+		public AdditionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof CalculatorListener ) ((CalculatorListener)listener).enterExpression(this);
+			if ( listener instanceof CalculatorListener ) ((CalculatorListener)listener).enterAddition(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof CalculatorListener ) ((CalculatorListener)listener).exitExpression(this);
+			if ( listener instanceof CalculatorListener ) ((CalculatorListener)listener).exitAddition(this);
+		}
+	}
+	public static class NumberContext extends ExpressionContext {
+		public TerminalNode NUMBER() { return getToken(CalculatorParser.NUMBER, 0); }
+		public NumberContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof CalculatorListener ) ((CalculatorListener)listener).enterNumber(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof CalculatorListener ) ((CalculatorListener)listener).exitNumber(this);
 		}
 	}
 
@@ -169,6 +189,10 @@ public class CalculatorParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
+			_localctx = new NumberContext(_localctx);
+			_ctx = _localctx;
+			_prevctx = _localctx;
+
 			setState(7);
 			match(NUMBER);
 			}
@@ -182,16 +206,15 @@ public class CalculatorParser extends Parser {
 					_prevctx = _localctx;
 					{
 					{
-					_localctx = new ExpressionContext(_parentctx, _parentState);
-					_localctx.left = _prevctx;
-					_localctx.left = _prevctx;
+					_localctx = new AdditionContext(new ExpressionContext(_parentctx, _parentState));
+					((AdditionContext)_localctx).left = _prevctx;
 					pushNewRecursionContext(_localctx, _startState, RULE_expression);
 					setState(9);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
 					setState(10);
-					((ExpressionContext)_localctx).operator = match(ADD);
+					((AdditionContext)_localctx).operator = match(ADD);
 					setState(11);
-					((ExpressionContext)_localctx).right = expression(2);
+					((AdditionContext)_localctx).right = expression(2);
 					}
 					} 
 				}

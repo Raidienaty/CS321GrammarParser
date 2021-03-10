@@ -11,6 +11,7 @@ WHITESPACE : [ \t\r\n]+ -> skip;
 
 start : expression;
 
-expression : NUMBER
-           | left=expression operator=ADD right=expression
-           ;
+expression
+        : NUMBER # Number
+        | left=expression operator=ADD right=expression #Addition
+        ;

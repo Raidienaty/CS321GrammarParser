@@ -1,4 +1,5 @@
-// Generated from Calculator.g4 by ANTLR 4.9
+// Generated from parser/Calculator.g4 by ANTLR 4.9
+package parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -27,13 +28,25 @@ public class CalculatorBaseListener implements CalculatorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression(CalculatorParser.ExpressionContext ctx) { }
+	@Override public void enterAddition(CalculatorParser.AdditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression(CalculatorParser.ExpressionContext ctx) { }
+	@Override public void exitAddition(CalculatorParser.AdditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNumber(CalculatorParser.NumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumber(CalculatorParser.NumberContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
