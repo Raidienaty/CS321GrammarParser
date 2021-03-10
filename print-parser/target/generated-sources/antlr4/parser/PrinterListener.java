@@ -42,18 +42,6 @@ public interface PrinterListener extends ParseTreeListener {
 	 */
 	void exitParenthesis(PrinterParser.ParenthesisContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Quote}
-	 * labeled alternative in {@link PrinterParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterQuote(PrinterParser.QuoteContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Quote}
-	 * labeled alternative in {@link PrinterParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitQuote(PrinterParser.QuoteContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code Phrase}
 	 * labeled alternative in {@link PrinterParser#expression}.
 	 * @param ctx the parse tree

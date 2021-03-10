@@ -17,8 +17,8 @@ public class PrinterParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		PRINT=1, LPARENTHESIS=2, RPARENTHESIS=3, QUOTE=4, SEMICOLON=5, NUMBER=6, 
-		PHRASE=7, WHITESPACE=8;
+		PRINT=1, LPARENTHESIS=2, RPARENTHESIS=3, SEMICOLON=4, NUMBER=5, PHRASE=6, 
+		Comment=7, Space=8;
 	public static final int
 		RULE_start = 0, RULE_expression = 1;
 	private static String[] makeRuleNames() {
@@ -30,14 +30,14 @@ public class PrinterParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'print'", "'('", "')'", "'\"'", "';'"
+			null, "'print'", "'('", "')'", "';'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "PRINT", "LPARENTHESIS", "RPARENTHESIS", "QUOTE", "SEMICOLON", 
-			"NUMBER", "PHRASE", "WHITESPACE"
+			null, "PRINT", "LPARENTHESIS", "RPARENTHESIS", "SEMICOLON", "NUMBER", 
+			"PHRASE", "Comment", "Space"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -92,8 +92,12 @@ public class PrinterParser extends Parser {
 	}
 
 	public static class StartContext extends ParserRuleContext {
-		public ExpressionContext expression() {
-			return getRuleContext(ExpressionContext.class,0);
+		public TerminalNode EOF() { return getToken(PrinterParser.EOF, 0); }
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
 		}
 		public StartContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -112,11 +116,26 @@ public class PrinterParser extends Parser {
 	public final StartContext start() throws RecognitionException {
 		StartContext _localctx = new StartContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_start);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(4);
-			expression();
+			setState(5); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(4);
+				expression();
+				}
+				}
+				setState(7); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PRINT) | (1L << LPARENTHESIS) | (1L << SEMICOLON) | (1L << PHRASE))) != 0) );
+			setState(9);
+			match(EOF);
 			}
 		}
 		catch (RecognitionException re) {
@@ -139,25 +158,6 @@ public class PrinterParser extends Parser {
 		public ExpressionContext() { }
 		public void copyFrom(ExpressionContext ctx) {
 			super.copyFrom(ctx);
-		}
-	}
-	public static class QuoteContext extends ExpressionContext {
-		public ExpressionContext inner;
-		public List<TerminalNode> QUOTE() { return getTokens(PrinterParser.QUOTE); }
-		public TerminalNode QUOTE(int i) {
-			return getToken(PrinterParser.QUOTE, i);
-		}
-		public ExpressionContext expression() {
-			return getRuleContext(ExpressionContext.class,0);
-		}
-		public QuoteContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).enterQuote(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).exitQuote(this);
 		}
 	}
 	public static class SemicolonContext extends ExpressionContext {
@@ -185,12 +185,11 @@ public class PrinterParser extends Parser {
 		}
 	}
 	public static class ParenthesisContext extends ExpressionContext {
-		public ExpressionContext inner;
 		public TerminalNode LPARENTHESIS() { return getToken(PrinterParser.LPARENTHESIS, 0); }
-		public TerminalNode RPARENTHESIS() { return getToken(PrinterParser.RPARENTHESIS, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
+		public TerminalNode RPARENTHESIS() { return getToken(PrinterParser.RPARENTHESIS, 0); }
 		public ParenthesisContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -218,14 +217,14 @@ public class PrinterParser extends Parser {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_expression);
 		try {
-			setState(17);
+			setState(18);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PRINT:
 				_localctx = new PrintContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(6);
+				setState(11);
 				match(PRINT);
 				}
 				break;
@@ -233,39 +232,27 @@ public class PrinterParser extends Parser {
 				_localctx = new ParenthesisContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(7);
-				match(LPARENTHESIS);
-				setState(8);
-				((ParenthesisContext)_localctx).inner = expression();
-				setState(9);
-				match(RPARENTHESIS);
-				}
-				break;
-			case QUOTE:
-				_localctx = new QuoteContext(_localctx);
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(11);
-				match(QUOTE);
 				setState(12);
-				((QuoteContext)_localctx).inner = expression();
+				match(LPARENTHESIS);
 				setState(13);
-				match(QUOTE);
+				expression();
+				setState(14);
+				match(RPARENTHESIS);
 				}
 				break;
 			case PHRASE:
 				_localctx = new PhraseContext(_localctx);
-				enterOuterAlt(_localctx, 4);
+				enterOuterAlt(_localctx, 3);
 				{
-				setState(15);
+				setState(16);
 				match(PHRASE);
 				}
 				break;
 			case SEMICOLON:
 				_localctx = new SemicolonContext(_localctx);
-				enterOuterAlt(_localctx, 5);
+				enterOuterAlt(_localctx, 4);
 				{
-				setState(16);
+				setState(17);
 				match(SEMICOLON);
 				}
 				break;
@@ -285,13 +272,13 @@ public class PrinterParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n\26\4\2\t\2\4\3"+
-		"\t\3\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\24\n\3\3"+
-		"\3\2\2\4\2\4\2\2\2\27\2\6\3\2\2\2\4\23\3\2\2\2\6\7\5\4\3\2\7\3\3\2\2\2"+
-		"\b\24\7\3\2\2\t\n\7\4\2\2\n\13\5\4\3\2\13\f\7\5\2\2\f\24\3\2\2\2\r\16"+
-		"\7\6\2\2\16\17\5\4\3\2\17\20\7\6\2\2\20\24\3\2\2\2\21\24\7\t\2\2\22\24"+
-		"\7\7\2\2\23\b\3\2\2\2\23\t\3\2\2\2\23\r\3\2\2\2\23\21\3\2\2\2\23\22\3"+
-		"\2\2\2\24\5\3\2\2\2\3\23";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n\27\4\2\t\2\4\3"+
+		"\t\3\3\2\6\2\b\n\2\r\2\16\2\t\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3"+
+		"\25\n\3\3\3\2\2\4\2\4\2\2\2\30\2\7\3\2\2\2\4\24\3\2\2\2\6\b\5\4\3\2\7"+
+		"\6\3\2\2\2\b\t\3\2\2\2\t\7\3\2\2\2\t\n\3\2\2\2\n\13\3\2\2\2\13\f\7\2\2"+
+		"\3\f\3\3\2\2\2\r\25\7\3\2\2\16\17\7\4\2\2\17\20\5\4\3\2\20\21\7\5\2\2"+
+		"\21\25\3\2\2\2\22\25\7\b\2\2\23\25\7\6\2\2\24\r\3\2\2\2\24\16\3\2\2\2"+
+		"\24\22\3\2\2\2\24\23\3\2\2\2\25\5\3\2\2\2\4\t\24";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

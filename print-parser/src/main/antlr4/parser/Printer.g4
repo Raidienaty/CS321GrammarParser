@@ -1,22 +1,33 @@
-// Define a grammar called Hello
+// Define a grammar called Printer
 grammar Printer;
 
 //Tokens
 PRINT: 'print';
 LPARENTHESIS: '(';
 RPARENTHESIS: ')';
-QUOTE: '"';
 SEMICOLON: ';';
 NUMBER: [0-9]+;
-PHRASE : [a-zA-Z]+;           
-WHITESPACE : [ \t\r\n]+ -> skip; 
 
-start : expression;
+PHRASE 
+    : ["] ( ~["\r\n\\] | '\\' ~[\r\n] )* ["]
+    | ['] ( ~['\r\n\\] | '\\' ~[\r\n] )* [']
+    ;       
+
+Comment
+    : ( '//' ~[\r\n]* | '/*' .*? '*/' ) -> skip
+    ;
+
+Space
+    : [ \t\r\n\u000C] -> skip
+    ;
+
+start 
+    : ( expression )+ EOF
+    ;
 
 expression 
     : PRINT                                             # Print
-    | '(' inner=expression ')'                          # Parenthesis
-    | '"' inner=expression '"'                          # Quote
+    | LPARENTHESIS expression RPARENTHESIS              # Parenthesis
     | PHRASE                                            # Phrase
     | SEMICOLON                                         # Semicolon
     ;

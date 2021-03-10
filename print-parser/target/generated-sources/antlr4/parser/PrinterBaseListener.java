@@ -52,18 +52,6 @@ public class PrinterBaseListener implements PrinterListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterQuote(PrinterParser.QuoteContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitQuote(PrinterParser.QuoteContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterPhrase(PrinterParser.PhraseContext ctx) { }
 	/**
 	 * {@inheritDoc}
