@@ -1,0 +1,9 @@
+HELLO=1
+ADD=2
+REMOVE=3
+NUMBER=4
+ID=5
+WHITESPACE=6
+'hello'=1
+'+'=2
+'-'=3
