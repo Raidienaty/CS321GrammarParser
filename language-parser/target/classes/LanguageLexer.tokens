@@ -1,0 +1,12 @@
+PRINT=1
+LPARENTHESIS=2
+RPARENTHESIS=3
+SEMICOLON=4
+NUMBER=5
+STRING=6
+Comment=7
+WhiteSpace=8
+'print'=1
+'('=2
+')'=3
+';'=4
