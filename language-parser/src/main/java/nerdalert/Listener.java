@@ -6,8 +6,6 @@ import parser.*;
 
 public class Listener extends LanguageBaseListener
 {
-    private Stack<String> printStack = new Stack<>();
-
     @Override
     public void exitPrintFunctionCall(LanguageParser.PrintFunctionCallContext context)
     {
@@ -22,5 +20,15 @@ public class Listener extends LanguageBaseListener
         {
             System.out.println("");
         }
+    }
+
+    @Override
+    public void exitAssignment(LanguageParser.AssignmentContext context)
+    {
+        if (context.isEmpty())
+            return;
+
+        //Instruction Stack
+        //Hash map containing variables
     }
 }

@@ -11,8 +11,8 @@ start
     ;
 
 statement
-    : functionCall SEMICOLON
-    | assignment SEMICOLON
+    : functionCall SEMICOLON                            # generalFunctionCall
+    | assignment SEMICOLON                              # assingment
     ;
 
 assignment

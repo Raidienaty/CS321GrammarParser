@@ -152,24 +152,44 @@ public class LanguageParser extends Parser {
 	}
 
 	public static class StatementContext extends ParserRuleContext {
-		public FunctionCallContext functionCall() {
-			return getRuleContext(FunctionCallContext.class,0);
-		}
-		public TerminalNode SEMICOLON() { return getToken(LanguageParser.SEMICOLON, 0); }
-		public AssignmentContext assignment() {
-			return getRuleContext(AssignmentContext.class,0);
-		}
 		public StatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_statement; }
+	 
+		public StatementContext() { }
+		public void copyFrom(StatementContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class AssingmentContext extends StatementContext {
+		public AssignmentContext assignment() {
+			return getRuleContext(AssignmentContext.class,0);
+		}
+		public TerminalNode SEMICOLON() { return getToken(LanguageParser.SEMICOLON, 0); }
+		public AssingmentContext(StatementContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterStatement(this);
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterAssingment(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitStatement(this);
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitAssingment(this);
+		}
+	}
+	public static class GeneralFunctionCallContext extends StatementContext {
+		public FunctionCallContext functionCall() {
+			return getRuleContext(FunctionCallContext.class,0);
+		}
+		public TerminalNode SEMICOLON() { return getToken(LanguageParser.SEMICOLON, 0); }
+		public GeneralFunctionCallContext(StatementContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterGeneralFunctionCall(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitGeneralFunctionCall(this);
 		}
 	}
 
@@ -181,6 +201,7 @@ public class LanguageParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PRINT:
+				_localctx = new GeneralFunctionCallContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(20);
@@ -190,6 +211,7 @@ public class LanguageParser extends Parser {
 				}
 				break;
 			case DATATYPE:
+				_localctx = new AssingmentContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(23);

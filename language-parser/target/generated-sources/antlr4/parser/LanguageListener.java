@@ -18,15 +18,29 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitStart(LanguageParser.StartContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link LanguageParser#statement}.
+	 * Enter a parse tree produced by the {@code generalFunctionCall}
+	 * labeled alternative in {@link LanguageParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatement(LanguageParser.StatementContext ctx);
+	void enterGeneralFunctionCall(LanguageParser.GeneralFunctionCallContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link LanguageParser#statement}.
+	 * Exit a parse tree produced by the {@code generalFunctionCall}
+	 * labeled alternative in {@link LanguageParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatement(LanguageParser.StatementContext ctx);
+	void exitGeneralFunctionCall(LanguageParser.GeneralFunctionCallContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code assingment}
+	 * labeled alternative in {@link LanguageParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssingment(LanguageParser.AssingmentContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assingment}
+	 * labeled alternative in {@link LanguageParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssingment(LanguageParser.AssingmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LanguageParser#assignment}.
 	 * @param ctx the parse tree

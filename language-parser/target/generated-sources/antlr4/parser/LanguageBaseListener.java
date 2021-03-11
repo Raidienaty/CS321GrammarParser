@@ -28,13 +28,25 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatement(LanguageParser.StatementContext ctx) { }
+	@Override public void enterGeneralFunctionCall(LanguageParser.GeneralFunctionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatement(LanguageParser.StatementContext ctx) { }
+	@Override public void exitGeneralFunctionCall(LanguageParser.GeneralFunctionCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAssingment(LanguageParser.AssingmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssingment(LanguageParser.AssingmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
