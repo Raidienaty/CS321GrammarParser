@@ -22,12 +22,17 @@ Space
     ;
 
 start 
-    : ( expression )+ EOF
+    : ( functionCall )+ EOF
+    ;
+
+functionCall
+    : printFunction SEMICOLON
+    ;
+
+printFunction
+    : PRINT LPARENTHESIS expression RPARENTHESIS
     ;
 
 expression 
-    : PRINT                                             # Print
-    | LPARENTHESIS expression RPARENTHESIS              # Parenthesis
-    | PHRASE                                            # Phrase
-    | SEMICOLON                                         # Semicolon
+    : PHRASE                                            # Phrase
     ;

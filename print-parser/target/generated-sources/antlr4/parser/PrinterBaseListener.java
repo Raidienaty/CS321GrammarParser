@@ -28,25 +28,25 @@ public class PrinterBaseListener implements PrinterListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrint(PrinterParser.PrintContext ctx) { }
+	@Override public void enterFunctionCall(PrinterParser.FunctionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrint(PrinterParser.PrintContext ctx) { }
+	@Override public void exitFunctionCall(PrinterParser.FunctionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParenthesis(PrinterParser.ParenthesisContext ctx) { }
+	@Override public void enterPrintFunction(PrinterParser.PrintFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParenthesis(PrinterParser.ParenthesisContext ctx) { }
+	@Override public void exitPrintFunction(PrinterParser.PrintFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -59,18 +59,6 @@ public class PrinterBaseListener implements PrinterListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPhrase(PrinterParser.PhraseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSemicolon(PrinterParser.SemicolonContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSemicolon(PrinterParser.SemicolonContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

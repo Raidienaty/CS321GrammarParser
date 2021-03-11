@@ -20,10 +20,10 @@ public class PrinterParser extends Parser {
 		PRINT=1, LPARENTHESIS=2, RPARENTHESIS=3, SEMICOLON=4, NUMBER=5, PHRASE=6, 
 		Comment=7, Space=8;
 	public static final int
-		RULE_start = 0, RULE_expression = 1;
+		RULE_start = 0, RULE_functionCall = 1, RULE_printFunction = 2, RULE_expression = 3;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"start", "expression"
+			"start", "functionCall", "printFunction", "expression"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -93,11 +93,11 @@ public class PrinterParser extends Parser {
 
 	public static class StartContext extends ParserRuleContext {
 		public TerminalNode EOF() { return getToken(PrinterParser.EOF, 0); }
-		public List<ExpressionContext> expression() {
-			return getRuleContexts(ExpressionContext.class);
+		public List<FunctionCallContext> functionCall() {
+			return getRuleContexts(FunctionCallContext.class);
 		}
-		public ExpressionContext expression(int i) {
-			return getRuleContext(ExpressionContext.class,i);
+		public FunctionCallContext functionCall(int i) {
+			return getRuleContext(FunctionCallContext.class,i);
 		}
 		public StartContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -120,22 +120,112 @@ public class PrinterParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(5); 
+			setState(9); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(4);
-				expression();
+				setState(8);
+				functionCall();
 				}
 				}
-				setState(7); 
+				setState(11); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PRINT) | (1L << LPARENTHESIS) | (1L << SEMICOLON) | (1L << PHRASE))) != 0) );
-			setState(9);
+			} while ( _la==PRINT );
+			setState(13);
 			match(EOF);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class FunctionCallContext extends ParserRuleContext {
+		public PrintFunctionContext printFunction() {
+			return getRuleContext(PrintFunctionContext.class,0);
+		}
+		public TerminalNode SEMICOLON() { return getToken(PrinterParser.SEMICOLON, 0); }
+		public FunctionCallContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_functionCall; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).enterFunctionCall(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).exitFunctionCall(this);
+		}
+	}
+
+	public final FunctionCallContext functionCall() throws RecognitionException {
+		FunctionCallContext _localctx = new FunctionCallContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_functionCall);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(15);
+			printFunction();
+			setState(16);
+			match(SEMICOLON);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class PrintFunctionContext extends ParserRuleContext {
+		public TerminalNode PRINT() { return getToken(PrinterParser.PRINT, 0); }
+		public TerminalNode LPARENTHESIS() { return getToken(PrinterParser.LPARENTHESIS, 0); }
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public TerminalNode RPARENTHESIS() { return getToken(PrinterParser.RPARENTHESIS, 0); }
+		public PrintFunctionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_printFunction; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).enterPrintFunction(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).exitPrintFunction(this);
+		}
+	}
+
+	public final PrintFunctionContext printFunction() throws RecognitionException {
+		PrintFunctionContext _localctx = new PrintFunctionContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_printFunction);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(18);
+			match(PRINT);
+			setState(19);
+			match(LPARENTHESIS);
+			setState(20);
+			expression();
+			setState(21);
+			match(RPARENTHESIS);
 			}
 		}
 		catch (RecognitionException re) {
@@ -160,46 +250,6 @@ public class PrinterParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class SemicolonContext extends ExpressionContext {
-		public TerminalNode SEMICOLON() { return getToken(PrinterParser.SEMICOLON, 0); }
-		public SemicolonContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).enterSemicolon(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).exitSemicolon(this);
-		}
-	}
-	public static class PrintContext extends ExpressionContext {
-		public TerminalNode PRINT() { return getToken(PrinterParser.PRINT, 0); }
-		public PrintContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).enterPrint(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).exitPrint(this);
-		}
-	}
-	public static class ParenthesisContext extends ExpressionContext {
-		public TerminalNode LPARENTHESIS() { return getToken(PrinterParser.LPARENTHESIS, 0); }
-		public ExpressionContext expression() {
-			return getRuleContext(ExpressionContext.class,0);
-		}
-		public TerminalNode RPARENTHESIS() { return getToken(PrinterParser.RPARENTHESIS, 0); }
-		public ParenthesisContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).enterParenthesis(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PrinterListener ) ((PrinterListener)listener).exitParenthesis(this);
-		}
-	}
 	public static class PhraseContext extends ExpressionContext {
 		public TerminalNode PHRASE() { return getToken(PrinterParser.PHRASE, 0); }
 		public PhraseContext(ExpressionContext ctx) { copyFrom(ctx); }
@@ -215,49 +265,13 @@ public class PrinterParser extends Parser {
 
 	public final ExpressionContext expression() throws RecognitionException {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_expression);
+		enterRule(_localctx, 6, RULE_expression);
 		try {
-			setState(18);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case PRINT:
-				_localctx = new PrintContext(_localctx);
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(11);
-				match(PRINT);
-				}
-				break;
-			case LPARENTHESIS:
-				_localctx = new ParenthesisContext(_localctx);
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(12);
-				match(LPARENTHESIS);
-				setState(13);
-				expression();
-				setState(14);
-				match(RPARENTHESIS);
-				}
-				break;
-			case PHRASE:
-				_localctx = new PhraseContext(_localctx);
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(16);
-				match(PHRASE);
-				}
-				break;
-			case SEMICOLON:
-				_localctx = new SemicolonContext(_localctx);
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(17);
-				match(SEMICOLON);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			_localctx = new PhraseContext(_localctx);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(23);
+			match(PHRASE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -272,13 +286,14 @@ public class PrinterParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n\27\4\2\t\2\4\3"+
-		"\t\3\3\2\6\2\b\n\2\r\2\16\2\t\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3"+
-		"\25\n\3\3\3\2\2\4\2\4\2\2\2\30\2\7\3\2\2\2\4\24\3\2\2\2\6\b\5\4\3\2\7"+
-		"\6\3\2\2\2\b\t\3\2\2\2\t\7\3\2\2\2\t\n\3\2\2\2\n\13\3\2\2\2\13\f\7\2\2"+
-		"\3\f\3\3\2\2\2\r\25\7\3\2\2\16\17\7\4\2\2\17\20\5\4\3\2\20\21\7\5\2\2"+
-		"\21\25\3\2\2\2\22\25\7\b\2\2\23\25\7\6\2\2\24\r\3\2\2\2\24\16\3\2\2\2"+
-		"\24\22\3\2\2\2\24\23\3\2\2\2\25\5\3\2\2\2\4\t\24";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n\34\4\2\t\2\4\3"+
+		"\t\3\4\4\t\4\4\5\t\5\3\2\6\2\f\n\2\r\2\16\2\r\3\2\3\2\3\3\3\3\3\3\3\4"+
+		"\3\4\3\4\3\4\3\4\3\5\3\5\3\5\2\2\6\2\4\6\b\2\2\2\30\2\13\3\2\2\2\4\21"+
+		"\3\2\2\2\6\24\3\2\2\2\b\31\3\2\2\2\n\f\5\4\3\2\13\n\3\2\2\2\f\r\3\2\2"+
+		"\2\r\13\3\2\2\2\r\16\3\2\2\2\16\17\3\2\2\2\17\20\7\2\2\3\20\3\3\2\2\2"+
+		"\21\22\5\6\4\2\22\23\7\6\2\2\23\5\3\2\2\2\24\25\7\3\2\2\25\26\7\4\2\2"+
+		"\26\27\5\b\5\2\27\30\7\5\2\2\30\7\3\2\2\2\31\32\7\b\2\2\32\t\3\2\2\2\3"+
+		"\r";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
