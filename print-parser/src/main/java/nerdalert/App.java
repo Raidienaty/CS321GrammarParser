@@ -27,6 +27,6 @@ public class App
         
         walker.walk(listener, parseTree);
 
-        System.out.println(listener.getResult());
+        listener.printResult();
     }
 }

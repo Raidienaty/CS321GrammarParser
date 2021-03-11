@@ -17,7 +17,7 @@ public class PrinterParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		PRINT=1, LPARENTHESIS=2, RPARENTHESIS=3, SEMICOLON=4, NUMBER=5, PHRASE=6, 
-		Comment=7, Space=8;
+		Comment=7, WhiteSpace=8;
 	public static final int
 		RULE_start = 0, RULE_functionCall = 1, RULE_printFunction = 2, RULE_expression = 3;
 	private static String[] makeRuleNames() {
@@ -36,7 +36,7 @@ public class PrinterParser extends Parser {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "PRINT", "LPARENTHESIS", "RPARENTHESIS", "SEMICOLON", "NUMBER", 
-			"PHRASE", "Comment", "Space"
+			"PHRASE", "Comment", "WhiteSpace"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -111,21 +111,21 @@ public class PrinterParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(9); 
+			setState(11);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			do {
+			while (_la==PRINT) {
 				{
 				{
 				setState(8);
 				functionCall();
 				}
 				}
-				setState(11); 
+				setState(13);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==PRINT );
-			setState(13);
+			}
+			setState(14);
 			match(EOF);
 			}
 		}
@@ -157,9 +157,9 @@ public class PrinterParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(15);
-			printFunction();
 			setState(16);
+			printFunction();
+			setState(17);
 			match(SEMICOLON);
 			}
 		}
@@ -193,13 +193,13 @@ public class PrinterParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(18);
-			match(PRINT);
 			setState(19);
-			match(LPARENTHESIS);
+			match(PRINT);
 			setState(20);
-			expression();
+			match(LPARENTHESIS);
 			setState(21);
+			expression();
+			setState(22);
 			match(RPARENTHESIS);
 			}
 		}
@@ -237,7 +237,7 @@ public class PrinterParser extends Parser {
 			_localctx = new PhraseContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(23);
+			setState(24);
 			match(PHRASE);
 			}
 		}
@@ -253,14 +253,14 @@ public class PrinterParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n\34\4\2\t\2\4\3"+
-		"\t\3\4\4\t\4\4\5\t\5\3\2\6\2\f\n\2\r\2\16\2\r\3\2\3\2\3\3\3\3\3\3\3\4"+
-		"\3\4\3\4\3\4\3\4\3\5\3\5\3\5\2\2\6\2\4\6\b\2\2\2\30\2\13\3\2\2\2\4\21"+
-		"\3\2\2\2\6\24\3\2\2\2\b\31\3\2\2\2\n\f\5\4\3\2\13\n\3\2\2\2\f\r\3\2\2"+
-		"\2\r\13\3\2\2\2\r\16\3\2\2\2\16\17\3\2\2\2\17\20\7\2\2\3\20\3\3\2\2\2"+
-		"\21\22\5\6\4\2\22\23\7\6\2\2\23\5\3\2\2\2\24\25\7\3\2\2\25\26\7\4\2\2"+
-		"\26\27\5\b\5\2\27\30\7\5\2\2\30\7\3\2\2\2\31\32\7\b\2\2\32\t\3\2\2\2\3"+
-		"\r";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n\35\4\2\t\2\4\3"+
+		"\t\3\4\4\t\4\4\5\t\5\3\2\7\2\f\n\2\f\2\16\2\17\13\2\3\2\3\2\3\3\3\3\3"+
+		"\3\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\2\2\6\2\4\6\b\2\2\2\31\2\r\3\2\2\2"+
+		"\4\22\3\2\2\2\6\25\3\2\2\2\b\32\3\2\2\2\n\f\5\4\3\2\13\n\3\2\2\2\f\17"+
+		"\3\2\2\2\r\13\3\2\2\2\r\16\3\2\2\2\16\20\3\2\2\2\17\r\3\2\2\2\20\21\7"+
+		"\2\2\3\21\3\3\2\2\2\22\23\5\6\4\2\23\24\7\6\2\2\24\5\3\2\2\2\25\26\7\3"+
+		"\2\2\26\27\7\4\2\2\27\30\5\b\5\2\30\31\7\5\2\2\31\7\3\2\2\2\32\33\7\b"+
+		"\2\2\33\t\3\2\2\2\3\r";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

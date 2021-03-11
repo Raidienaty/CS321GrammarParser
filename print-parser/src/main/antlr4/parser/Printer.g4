@@ -8,21 +8,8 @@ RPARENTHESIS: ')';
 SEMICOLON: ';';
 NUMBER: [0-9]+;
 
-PHRASE 
-    : ["] ( ~["\r\n\\] | '\\' ~[\r\n] )* ["]
-    | ['] ( ~['\r\n\\] | '\\' ~[\r\n] )* [']
-    ;       
-
-Comment
-    : ( '//' ~[\r\n]* | '/*' .*? '*/' ) -> skip
-    ;
-
-Space
-    : [ \t\r\n\u000C] -> skip
-    ;
-
 start 
-    : ( functionCall )+ EOF
+    : functionCall* EOF
     ;
 
 functionCall
@@ -35,4 +22,17 @@ printFunction
 
 expression 
     : PHRASE                                            # Phrase
+    ;
+
+PHRASE 
+    : ["] ( ~["\r\n\\] | '\\' ~[\r\n] )* ["]
+    | ['] ( ~['\r\n\\] | '\\' ~[\r\n] )* [']
+    ;       
+
+Comment
+    : ( '//' ~[\r\n]* | '/*' .*? '*/' )+ -> skip
+    ;
+
+WhiteSpace
+    : [ \t\u000C\r\n]+ -> skip
     ;
