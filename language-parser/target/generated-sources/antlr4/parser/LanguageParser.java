@@ -17,28 +17,29 @@ public class LanguageParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		PRINT=1, LPARENTHESIS=2, RPARENTHESIS=3, SEMICOLON=4, NUMBER=5, STRING=6, 
-		Comment=7, WhiteSpace=8;
+		T__0=1, PRINT=2, LPARENTHESIS=3, RPARENTHESIS=4, SEMICOLON=5, STRING=6, 
+		VARIABLENAME=7, DATATYPE=8, COMMENT=9, WHITESPACE=10, NUMBER=11, BOOL=12;
 	public static final int
-		RULE_start = 0, RULE_statement = 1, RULE_functionCall = 2, RULE_printFunction = 3, 
-		RULE_expression = 4;
+		RULE_start = 0, RULE_statement = 1, RULE_assignment = 2, RULE_functionCall = 3, 
+		RULE_printFunction = 4, RULE_expression = 5;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"start", "statement", "functionCall", "printFunction", "expression"
+			"start", "statement", "assignment", "functionCall", "printFunction", 
+			"expression"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'print'", "'('", "')'", "';'"
+			null, "'='", "'print'", "'('", "')'", "';'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "PRINT", "LPARENTHESIS", "RPARENTHESIS", "SEMICOLON", "NUMBER", 
-			"STRING", "Comment", "WhiteSpace"
+			null, null, "PRINT", "LPARENTHESIS", "RPARENTHESIS", "SEMICOLON", "STRING", 
+			"VARIABLENAME", "DATATYPE", "COMMENT", "WHITESPACE", "NUMBER", "BOOL"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -121,21 +122,21 @@ public class LanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(13);
+			setState(15);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==PRINT) {
+			while (_la==PRINT || _la==DATATYPE) {
 				{
 				{
-				setState(10);
+				setState(12);
 				statement();
 				}
 				}
-				setState(15);
+				setState(17);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(16);
+			setState(18);
 			match(EOF);
 			}
 		}
@@ -155,6 +156,9 @@ public class LanguageParser extends Parser {
 			return getRuleContext(FunctionCallContext.class,0);
 		}
 		public TerminalNode SEMICOLON() { return getToken(LanguageParser.SEMICOLON, 0); }
+		public AssignmentContext assignment() {
+			return getRuleContext(AssignmentContext.class,0);
+		}
 		public StatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -173,12 +177,76 @@ public class LanguageParser extends Parser {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_statement);
 		try {
+			setState(26);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case PRINT:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(20);
+				functionCall();
+				setState(21);
+				match(SEMICOLON);
+				}
+				break;
+			case DATATYPE:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(23);
+				assignment();
+				setState(24);
+				match(SEMICOLON);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class AssignmentContext extends ParserRuleContext {
+		public TerminalNode DATATYPE() { return getToken(LanguageParser.DATATYPE, 0); }
+		public TerminalNode VARIABLENAME() { return getToken(LanguageParser.VARIABLENAME, 0); }
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public AssignmentContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_assignment; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterAssignment(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitAssignment(this);
+		}
+	}
+
+	public final AssignmentContext assignment() throws RecognitionException {
+		AssignmentContext _localctx = new AssignmentContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_assignment);
+		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(18);
-			functionCall();
-			setState(19);
-			match(SEMICOLON);
+			setState(28);
+			match(DATATYPE);
+			setState(29);
+			match(VARIABLENAME);
+			setState(30);
+			match(T__0);
+			setState(31);
+			expression();
 			}
 		}
 		catch (RecognitionException re) {
@@ -220,12 +288,12 @@ public class LanguageParser extends Parser {
 
 	public final FunctionCallContext functionCall() throws RecognitionException {
 		FunctionCallContext _localctx = new FunctionCallContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_functionCall);
+		enterRule(_localctx, 6, RULE_functionCall);
 		try {
 			_localctx = new PrintFunctionCallContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(21);
+			setState(33);
 			printFunction();
 			}
 		}
@@ -263,17 +331,17 @@ public class LanguageParser extends Parser {
 
 	public final PrintFunctionContext printFunction() throws RecognitionException {
 		PrintFunctionContext _localctx = new PrintFunctionContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_printFunction);
+		enterRule(_localctx, 8, RULE_printFunction);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(23);
+			setState(35);
 			match(PRINT);
-			setState(24);
+			setState(36);
 			match(LPARENTHESIS);
-			setState(25);
+			setState(37);
 			expression();
-			setState(26);
+			setState(38);
 			match(RPARENTHESIS);
 			}
 		}
@@ -311,16 +379,64 @@ public class LanguageParser extends Parser {
 			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitStringExpression(this);
 		}
 	}
+	public static class BoolExpressionContext extends ExpressionContext {
+		public TerminalNode BOOL() { return getToken(LanguageParser.BOOL, 0); }
+		public BoolExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterBoolExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitBoolExpression(this);
+		}
+	}
+	public static class NumberExpressionContext extends ExpressionContext {
+		public TerminalNode NUMBER() { return getToken(LanguageParser.NUMBER, 0); }
+		public NumberExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterNumberExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitNumberExpression(this);
+		}
+	}
 
 	public final ExpressionContext expression() throws RecognitionException {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_expression);
+		enterRule(_localctx, 10, RULE_expression);
 		try {
-			_localctx = new StringExpressionContext(_localctx);
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(28);
-			match(STRING);
+			setState(43);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case STRING:
+				_localctx = new StringExpressionContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(40);
+				match(STRING);
+				}
+				break;
+			case NUMBER:
+				_localctx = new NumberExpressionContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(41);
+				match(NUMBER);
+				}
+				break;
+			case BOOL:
+				_localctx = new BoolExpressionContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(42);
+				match(BOOL);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -335,15 +451,18 @@ public class LanguageParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n!\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\7\2\16\n\2\f\2\16\2\21\13\2\3\2\3\2\3\3"+
-		"\3\3\3\3\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\2\2\7\2\4\6\b\n\2\2\2"+
-		"\34\2\17\3\2\2\2\4\24\3\2\2\2\6\27\3\2\2\2\b\31\3\2\2\2\n\36\3\2\2\2\f"+
-		"\16\5\4\3\2\r\f\3\2\2\2\16\21\3\2\2\2\17\r\3\2\2\2\17\20\3\2\2\2\20\22"+
-		"\3\2\2\2\21\17\3\2\2\2\22\23\7\2\2\3\23\3\3\2\2\2\24\25\5\6\4\2\25\26"+
-		"\7\6\2\2\26\5\3\2\2\2\27\30\5\b\5\2\30\7\3\2\2\2\31\32\7\3\2\2\32\33\7"+
-		"\4\2\2\33\34\5\n\6\2\34\35\7\5\2\2\35\t\3\2\2\2\36\37\7\b\2\2\37\13\3"+
-		"\2\2\2\3\17";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16\60\4\2\t\2\4\3"+
+		"\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\7\2\20\n\2\f\2\16\2\23\13\2\3"+
+		"\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3\35\n\3\3\4\3\4\3\4\3\4\3\4\3\5\3\5"+
+		"\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\5\7.\n\7\3\7\2\2\b\2\4\6\b\n\f\2\2\2"+
+		"-\2\21\3\2\2\2\4\34\3\2\2\2\6\36\3\2\2\2\b#\3\2\2\2\n%\3\2\2\2\f-\3\2"+
+		"\2\2\16\20\5\4\3\2\17\16\3\2\2\2\20\23\3\2\2\2\21\17\3\2\2\2\21\22\3\2"+
+		"\2\2\22\24\3\2\2\2\23\21\3\2\2\2\24\25\7\2\2\3\25\3\3\2\2\2\26\27\5\b"+
+		"\5\2\27\30\7\7\2\2\30\35\3\2\2\2\31\32\5\6\4\2\32\33\7\7\2\2\33\35\3\2"+
+		"\2\2\34\26\3\2\2\2\34\31\3\2\2\2\35\5\3\2\2\2\36\37\7\n\2\2\37 \7\t\2"+
+		"\2 !\7\3\2\2!\"\5\f\7\2\"\7\3\2\2\2#$\5\n\6\2$\t\3\2\2\2%&\7\4\2\2&\'"+
+		"\7\5\2\2\'(\5\f\7\2()\7\6\2\2)\13\3\2\2\2*.\7\b\2\2+.\7\r\2\2,.\7\16\2"+
+		"\2-*\3\2\2\2-+\3\2\2\2-,\3\2\2\2.\r\3\2\2\2\5\21\34-";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

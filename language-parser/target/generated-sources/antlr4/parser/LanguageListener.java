@@ -28,6 +28,16 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitStatement(LanguageParser.StatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LanguageParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignment(LanguageParser.AssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignment(LanguageParser.AssignmentContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code printFunctionCall}
 	 * labeled alternative in {@link LanguageParser#functionCall}.
 	 * @param ctx the parse tree
@@ -61,4 +71,28 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStringExpression(LanguageParser.StringExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code numberExpression}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumberExpression(LanguageParser.NumberExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code numberExpression}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumberExpression(LanguageParser.NumberExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code boolExpression}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolExpression(LanguageParser.BoolExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolExpression}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolExpression(LanguageParser.BoolExpressionContext ctx);
 }

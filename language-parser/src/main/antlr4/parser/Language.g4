@@ -5,7 +5,6 @@ PRINT: 'print';
 LPARENTHESIS: '(';
 RPARENTHESIS: ')';
 SEMICOLON: ';';
-NUMBER: [0-9]+;
 
 start 
     : statement* EOF
@@ -13,6 +12,11 @@ start
 
 statement
     : functionCall SEMICOLON
+    | assignment SEMICOLON
+    ;
+
+assignment
+    : DATATYPE VARIABLENAME '=' expression
     ;
 
 functionCall
@@ -25,17 +29,48 @@ printFunction
 
 expression 
     : STRING                                            # stringExpression
+    | NUMBER                                            # numberExpression
+    | BOOL                                              # boolExpression
     ;
 
 STRING
     : ["] ( ~["\r\n\\] | '\\' ~[\r\n] )* ["]
     | ['] ( ~['\r\n\\] | '\\' ~[\r\n] )* [']
-    ;       
+    ;   
 
-Comment
+VARIABLENAME
+    : [a-zA-Z]+
+    ;    
+
+DATATYPE
+    : 'int'
+    | 'double'
+    | 'string'
+    | 'bool'
+    ;
+
+COMMENT
     : ( '//' ~[\r\n]* | '/*' .*? '*/' )+ -> skip
     ;
 
-WhiteSpace
+WHITESPACE
     : [ \t\u000C\r\n]+ -> skip
+    ;
+
+NUMBER
+    : INT ( '.' DIGIT+ )?
+    ;
+
+BOOL
+    : 'true'
+    | 'false'
+    ;
+
+fragment INT
+    : [1-9] DIGIT+
+    | '0'
+    ;
+
+fragment DIGIT
+    : [0-9]
     ;
