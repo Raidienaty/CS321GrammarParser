@@ -5,6 +5,8 @@ PRINT: 'print';
 LPARENTHESIS: '(';
 RPARENTHESIS: ')';
 SEMICOLON: ';';
+TRUE: 'true';
+FALSE: 'false';
 
 start 
     : statement* EOF
@@ -62,8 +64,8 @@ NUMBER
     ;
 
 BOOL
-    : 'true'
-    | 'false'
+    : TRUE
+    | FALSE
     ;
 
 fragment INT
