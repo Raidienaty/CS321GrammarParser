@@ -16,7 +16,7 @@ statement
     ;
 
 assignment
-    : DATATYPE VARIABLENAME '=' expression
+    : VARIABLENAME '=' expression
     ;
 
 functionCall
@@ -67,7 +67,7 @@ BOOL
     ;
 
 fragment INT
-    : [1-9] DIGIT+
+    : [1-9] (DIGIT+)?
     | '0'
     ;
 

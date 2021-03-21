@@ -125,7 +125,7 @@ public class LanguageParser extends Parser {
 			setState(15);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==PRINT || _la==DATATYPE) {
+			while (_la==PRINT || _la==VARIABLENAME) {
 				{
 				{
 				setState(12);
@@ -210,7 +210,7 @@ public class LanguageParser extends Parser {
 				match(SEMICOLON);
 				}
 				break;
-			case DATATYPE:
+			case VARIABLENAME:
 				_localctx = new AssingmentContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
@@ -236,7 +236,6 @@ public class LanguageParser extends Parser {
 	}
 
 	public static class AssignmentContext extends ParserRuleContext {
-		public TerminalNode DATATYPE() { return getToken(LanguageParser.DATATYPE, 0); }
 		public TerminalNode VARIABLENAME() { return getToken(LanguageParser.VARIABLENAME, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
@@ -262,12 +261,10 @@ public class LanguageParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(28);
-			match(DATATYPE);
-			setState(29);
 			match(VARIABLENAME);
-			setState(30);
+			setState(29);
 			match(T__0);
-			setState(31);
+			setState(30);
 			expression();
 			}
 		}
@@ -315,7 +312,7 @@ public class LanguageParser extends Parser {
 			_localctx = new PrintFunctionCallContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(33);
+			setState(32);
 			printFunction();
 			}
 		}
@@ -357,13 +354,13 @@ public class LanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(35);
+			setState(34);
 			match(PRINT);
-			setState(36);
+			setState(35);
 			match(LPARENTHESIS);
-			setState(37);
+			setState(36);
 			expression();
-			setState(38);
+			setState(37);
 			match(RPARENTHESIS);
 			}
 		}
@@ -430,14 +427,14 @@ public class LanguageParser extends Parser {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_expression);
 		try {
-			setState(43);
+			setState(42);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case STRING:
 				_localctx = new StringExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(40);
+				setState(39);
 				match(STRING);
 				}
 				break;
@@ -445,7 +442,7 @@ public class LanguageParser extends Parser {
 				_localctx = new NumberExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(41);
+				setState(40);
 				match(NUMBER);
 				}
 				break;
@@ -453,7 +450,7 @@ public class LanguageParser extends Parser {
 				_localctx = new BoolExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(42);
+				setState(41);
 				match(BOOL);
 				}
 				break;
@@ -473,18 +470,18 @@ public class LanguageParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16\60\4\2\t\2\4\3"+
-		"\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\7\2\20\n\2\f\2\16\2\23\13\2\3"+
-		"\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3\35\n\3\3\4\3\4\3\4\3\4\3\4\3\5\3\5"+
-		"\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\5\7.\n\7\3\7\2\2\b\2\4\6\b\n\f\2\2\2"+
-		"-\2\21\3\2\2\2\4\34\3\2\2\2\6\36\3\2\2\2\b#\3\2\2\2\n%\3\2\2\2\f-\3\2"+
-		"\2\2\16\20\5\4\3\2\17\16\3\2\2\2\20\23\3\2\2\2\21\17\3\2\2\2\21\22\3\2"+
-		"\2\2\22\24\3\2\2\2\23\21\3\2\2\2\24\25\7\2\2\3\25\3\3\2\2\2\26\27\5\b"+
-		"\5\2\27\30\7\7\2\2\30\35\3\2\2\2\31\32\5\6\4\2\32\33\7\7\2\2\33\35\3\2"+
-		"\2\2\34\26\3\2\2\2\34\31\3\2\2\2\35\5\3\2\2\2\36\37\7\n\2\2\37 \7\t\2"+
-		"\2 !\7\3\2\2!\"\5\f\7\2\"\7\3\2\2\2#$\5\n\6\2$\t\3\2\2\2%&\7\4\2\2&\'"+
-		"\7\5\2\2\'(\5\f\7\2()\7\6\2\2)\13\3\2\2\2*.\7\b\2\2+.\7\r\2\2,.\7\16\2"+
-		"\2-*\3\2\2\2-+\3\2\2\2-,\3\2\2\2.\r\3\2\2\2\5\21\34-";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16/\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\7\2\20\n\2\f\2\16\2\23\13\2\3\2"+
+		"\3\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3\35\n\3\3\4\3\4\3\4\3\4\3\5\3\5\3\6\3"+
+		"\6\3\6\3\6\3\6\3\7\3\7\3\7\5\7-\n\7\3\7\2\2\b\2\4\6\b\n\f\2\2\2,\2\21"+
+		"\3\2\2\2\4\34\3\2\2\2\6\36\3\2\2\2\b\"\3\2\2\2\n$\3\2\2\2\f,\3\2\2\2\16"+
+		"\20\5\4\3\2\17\16\3\2\2\2\20\23\3\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2\22"+
+		"\24\3\2\2\2\23\21\3\2\2\2\24\25\7\2\2\3\25\3\3\2\2\2\26\27\5\b\5\2\27"+
+		"\30\7\7\2\2\30\35\3\2\2\2\31\32\5\6\4\2\32\33\7\7\2\2\33\35\3\2\2\2\34"+
+		"\26\3\2\2\2\34\31\3\2\2\2\35\5\3\2\2\2\36\37\7\t\2\2\37 \7\3\2\2 !\5\f"+
+		"\7\2!\7\3\2\2\2\"#\5\n\6\2#\t\3\2\2\2$%\7\4\2\2%&\7\5\2\2&\'\5\f\7\2\'"+
+		"(\7\6\2\2(\13\3\2\2\2)-\7\b\2\2*-\7\r\2\2+-\7\16\2\2,)\3\2\2\2,*\3\2\2"+
+		"\2,+\3\2\2\2-\r\3\2\2\2\5\21\34,";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
