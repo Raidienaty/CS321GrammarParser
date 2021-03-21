@@ -1,6 +1,6 @@
-/mnt/d/Storage/CodingProjects/ANTLR/CS321GrammarParser/language-parser/target/generated-sources/antlr4/parser/LanguageListener.java
-/mnt/d/Storage/CodingProjects/ANTLR/CS321GrammarParser/language-parser/target/generated-sources/antlr4/parser/LanguageBaseListener.java
-/mnt/d/Storage/CodingProjects/ANTLR/CS321GrammarParser/language-parser/src/main/java/nerdalert/Listener.java
-/mnt/d/Storage/CodingProjects/ANTLR/CS321GrammarParser/language-parser/src/main/java/nerdalert/Main.java
-/mnt/d/Storage/CodingProjects/ANTLR/CS321GrammarParser/language-parser/target/generated-sources/antlr4/parser/LanguageLexer.java
-/mnt/d/Storage/CodingProjects/ANTLR/CS321GrammarParser/language-parser/target/generated-sources/antlr4/parser/LanguageParser.java
+/home/ttt/repos/CS321GrammarParser/language-parser/target/generated-sources/antlr4/parser/LanguageParser.java
+/home/ttt/repos/CS321GrammarParser/language-parser/src/main/java/nerdalert/Main.java
+/home/ttt/repos/CS321GrammarParser/language-parser/target/generated-sources/antlr4/parser/LanguageBaseListener.java
+/home/ttt/repos/CS321GrammarParser/language-parser/src/main/java/nerdalert/Listener.java
+/home/ttt/repos/CS321GrammarParser/language-parser/target/generated-sources/antlr4/parser/LanguageLexer.java
+/home/ttt/repos/CS321GrammarParser/language-parser/target/generated-sources/antlr4/parser/LanguageListener.java

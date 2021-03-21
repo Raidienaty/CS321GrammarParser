@@ -5,6 +5,8 @@ PRINT: 'print';
 LPARENTHESIS: '(';
 RPARENTHESIS: ')';
 SEMICOLON: ';';
+TRUE: 'true';
+FALSE: 'false';
 
 start 
     : statement* EOF
@@ -16,7 +18,7 @@ statement
     ;
 
 assignment
-    : DATATYPE VARIABLENAME '=' expression
+    : VARIABLENAME '=' expression
     ;
 
 functionCall
@@ -62,12 +64,12 @@ NUMBER
     ;
 
 BOOL
-    : 'true'
-    | 'false'
+    : TRUE
+    | FALSE
     ;
 
 fragment INT
-    : [1-9] DIGIT+
+    : [1-9] (DIGIT+)?
     | '0'
     ;
 

@@ -15,7 +15,7 @@ public class Main
 {
     public static void main( String[] args ) throws IOException
     {
-        CharStream inputCharStream = CharStreams.fromFileName("language-parser/src/main/java/nerdalert/input.txt");
+        CharStream inputCharStream = CharStreams.fromFileName("language-parser/src/main/java/nerdalert/input.dcf");
             
         Lexer lexer = new LanguageLexer(inputCharStream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
