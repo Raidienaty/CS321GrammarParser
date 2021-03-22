@@ -1,6 +1,5 @@
 package nerdalert;
 
-import java.util.Stack;
 import java.util.HashMap;
 
 import parser.*;
@@ -11,16 +10,31 @@ public class Listener extends LanguageBaseListener
     @Override
     public void exitPrintFunctionCall(LanguageParser.PrintFunctionCallContext context)
     {
-        if (context != null)
+
+        if (context.isEmpty())
         {
-            String string = context.getChild(0).getChild(2).getText();
+            System.out.println("");
+            return;
+        }
+
+        String string = context.getChild(0).getChild(2).getText();
+
+        if (string.contains("\"") || string.contains("'"))
+        {
             string = string.substring(1, string.length() - 1);
 
             System.out.println(string);
         }
         else
         {
-            System.out.println("");
+            String value = variableMap.get(string);
+
+            if (value == null)
+            {
+                throw new NullPointerException("Variable undefined");
+            }
+
+            System.out.println(value);
         }
     }
 
@@ -32,11 +46,13 @@ public class Listener extends LanguageBaseListener
         else{
             String variableName = context.getChild(0).getChild(0).getText();
             String value = context.getChild(0).getChild(2).getText();
-            variableMap.put(variableName, value);  
+
+            if (value.contains("+"))
+                return;
+
+            variableMap.put(variableName, value);
             System.out.println(variableMap.get(variableName));
         }
-        //Instruction Stack
-        //Hash map containing variables
     }
 
     @Override
@@ -50,15 +66,18 @@ public class Listener extends LanguageBaseListener
             int num1, num2;
             try {
                 num1 = Integer.parseInt(variableMap.get(key1));
-                num2 = Integer.parseInt(variableMap.get(key2));    
+                num2 = Integer.parseInt(variableMap.get(key2));
             } catch (NumberFormatException e) {
                 num1 = Integer.parseInt(key1);
                 num2 = Integer.parseInt(key2);
             }
-            System.out.println(num1 + num2);
 
+            int total = num1 + num2;
+
+            String variable = context.parent.getChild(0).getText();
+            String value = Integer.toString(total);
+
+            variableMap.put(variable, value);
         }
-        //Instruction Stack
-        //Hash map containing variables
     }
 }

@@ -15,7 +15,6 @@ start
 statement
     : functionCall SEMICOLON                            # generalFunctionCall
     | assignment SEMICOLON                              # assignmentFunctionCall
-    | addition SEMICOLON                                # additionFunc
     ;
 
 assignment
@@ -31,9 +30,11 @@ printFunction
     ;
 
 expression
-    : STRING                                            # stringExpression
+    : addition                                          # additionFunc
+    | STRING                                            # stringExpression
     | NUMBER                                            # numberExpression
     | BOOL                                              # boolExpression
+    | VARIABLENAME                                      # variableExpression
     ;
 
 addition

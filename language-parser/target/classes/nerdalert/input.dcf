@@ -4,5 +4,5 @@ var = true;
 num = 6;
 secNum = 5;
 string = "string";
-num + secNum;
-5 + 1;
+num = num + secNum;
+print(num);

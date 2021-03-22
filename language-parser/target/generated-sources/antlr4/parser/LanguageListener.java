@@ -42,18 +42,6 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitAssignmentFunctionCall(LanguageParser.AssignmentFunctionCallContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code additionFunc}
-	 * labeled alternative in {@link LanguageParser#statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterAdditionFunc(LanguageParser.AdditionFuncContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code additionFunc}
-	 * labeled alternative in {@link LanguageParser#statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitAdditionFunc(LanguageParser.AdditionFuncContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code assignmentFunc}
 	 * labeled alternative in {@link LanguageParser#assignment}.
 	 * @param ctx the parse tree
@@ -87,6 +75,18 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrintFunction(LanguageParser.PrintFunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code additionFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAdditionFunc(LanguageParser.AdditionFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code additionFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAdditionFunc(LanguageParser.AdditionFuncContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code stringExpression}
 	 * labeled alternative in {@link LanguageParser#expression}.
@@ -123,6 +123,18 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBoolExpression(LanguageParser.BoolExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code variableExpression}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableExpression(LanguageParser.VariableExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code variableExpression}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableExpression(LanguageParser.VariableExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LanguageParser#addition}.
 	 * @param ctx the parse tree
