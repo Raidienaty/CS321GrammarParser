@@ -40,25 +40,37 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssingment(LanguageParser.AssingmentContext ctx) { }
+	@Override public void enterAssignmentFunctionCall(LanguageParser.AssignmentFunctionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssingment(LanguageParser.AssingmentContext ctx) { }
+	@Override public void exitAssignmentFunctionCall(LanguageParser.AssignmentFunctionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssignment(LanguageParser.AssignmentContext ctx) { }
+	@Override public void enterAdditionFunc(LanguageParser.AdditionFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssignment(LanguageParser.AssignmentContext ctx) { }
+	@Override public void exitAdditionFunc(LanguageParser.AdditionFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAssignmentFunc(LanguageParser.AssignmentFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignmentFunc(LanguageParser.AssignmentFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -119,6 +131,18 @@ public class LanguageBaseListener implements LanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBoolExpression(LanguageParser.BoolExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAddition(LanguageParser.AdditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAddition(LanguageParser.AdditionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

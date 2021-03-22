@@ -30,27 +30,41 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitGeneralFunctionCall(LanguageParser.GeneralFunctionCallContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code assingment}
+	 * Enter a parse tree produced by the {@code assignmentFunctionCall}
 	 * labeled alternative in {@link LanguageParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssingment(LanguageParser.AssingmentContext ctx);
+	void enterAssignmentFunctionCall(LanguageParser.AssignmentFunctionCallContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code assingment}
+	 * Exit a parse tree produced by the {@code assignmentFunctionCall}
 	 * labeled alternative in {@link LanguageParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssingment(LanguageParser.AssingmentContext ctx);
+	void exitAssignmentFunctionCall(LanguageParser.AssignmentFunctionCallContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link LanguageParser#assignment}.
+	 * Enter a parse tree produced by the {@code additionFunc}
+	 * labeled alternative in {@link LanguageParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssignment(LanguageParser.AssignmentContext ctx);
+	void enterAdditionFunc(LanguageParser.AdditionFuncContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link LanguageParser#assignment}.
+	 * Exit a parse tree produced by the {@code additionFunc}
+	 * labeled alternative in {@link LanguageParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssignment(LanguageParser.AssignmentContext ctx);
+	void exitAdditionFunc(LanguageParser.AdditionFuncContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code assignmentFunc}
+	 * labeled alternative in {@link LanguageParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignmentFunc(LanguageParser.AssignmentFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assignmentFunc}
+	 * labeled alternative in {@link LanguageParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignmentFunc(LanguageParser.AssignmentFuncContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code printFunctionCall}
 	 * labeled alternative in {@link LanguageParser#functionCall}.
@@ -109,4 +123,14 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBoolExpression(LanguageParser.BoolExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LanguageParser#addition}.
+	 * @param ctx the parse tree
+	 */
+	void enterAddition(LanguageParser.AdditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#addition}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddition(LanguageParser.AdditionContext ctx);
 }

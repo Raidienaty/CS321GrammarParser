@@ -2,4 +2,7 @@ print("test string");
 newVariable = 3.14159;
 var = true;
 num = 6;
+secNum = 5;
 string = "string";
+num + secNum;
+5 + 1;
