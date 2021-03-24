@@ -17,31 +17,31 @@ public class LanguageParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, PRINT=2, LPARENTHESIS=3, RPARENTHESIS=4, SEMICOLON=5, TRUE=6, 
-		FALSE=7, STRING=8, VARIABLENAME=9, DATATYPE=10, COMMENT=11, WHITESPACE=12, 
+		T__0=1, T__1=2, PRINT=3, LPARENTHESIS=4, RPARENTHESIS=5, SEMICOLON=6, 
+		TRUE=7, FALSE=8, STRING=9, VARIABLENAME=10, COMMENT=11, WHITESPACE=12, 
 		NUMBER=13, BOOL=14;
 	public static final int
 		RULE_start = 0, RULE_statement = 1, RULE_assignment = 2, RULE_functionCall = 3, 
-		RULE_printFunction = 4, RULE_expression = 5;
+		RULE_printFunction = 4, RULE_expression = 5, RULE_addition = 6;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"start", "statement", "assignment", "functionCall", "printFunction", 
-			"expression"
+			"expression", "addition"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'='", "'print'", "'('", "')'", "';'", "'true'", "'false'"
+			null, "'='", "'+'", "'print'", "'('", "')'", "';'", "'true'", "'false'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, "PRINT", "LPARENTHESIS", "RPARENTHESIS", "SEMICOLON", "TRUE", 
-			"FALSE", "STRING", "VARIABLENAME", "DATATYPE", "COMMENT", "WHITESPACE", 
-			"NUMBER", "BOOL"
+			null, null, null, "PRINT", "LPARENTHESIS", "RPARENTHESIS", "SEMICOLON", 
+			"TRUE", "FALSE", "STRING", "VARIABLENAME", "COMMENT", "WHITESPACE", "NUMBER", 
+			"BOOL"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -124,21 +124,21 @@ public class LanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(15);
+			setState(17);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==PRINT || _la==VARIABLENAME) {
 				{
 				{
-				setState(12);
+				setState(14);
 				statement();
 				}
 				}
-				setState(17);
+				setState(19);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(18);
+			setState(20);
 			match(EOF);
 			}
 		}
@@ -164,19 +164,19 @@ public class LanguageParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class AssingmentContext extends StatementContext {
+	public static class AssignmentFunctionCallContext extends StatementContext {
 		public AssignmentContext assignment() {
 			return getRuleContext(AssignmentContext.class,0);
 		}
 		public TerminalNode SEMICOLON() { return getToken(LanguageParser.SEMICOLON, 0); }
-		public AssingmentContext(StatementContext ctx) { copyFrom(ctx); }
+		public AssignmentFunctionCallContext(StatementContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterAssingment(this);
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterAssignmentFunctionCall(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitAssingment(this);
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitAssignmentFunctionCall(this);
 		}
 	}
 	public static class GeneralFunctionCallContext extends StatementContext {
@@ -199,26 +199,26 @@ public class LanguageParser extends Parser {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_statement);
 		try {
-			setState(26);
+			setState(28);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PRINT:
 				_localctx = new GeneralFunctionCallContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(20);
+				setState(22);
 				functionCall();
-				setState(21);
+				setState(23);
 				match(SEMICOLON);
 				}
 				break;
 			case VARIABLENAME:
-				_localctx = new AssingmentContext(_localctx);
+				_localctx = new AssignmentFunctionCallContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(23);
+				setState(25);
 				assignment();
-				setState(24);
+				setState(26);
 				match(SEMICOLON);
 				}
 				break;
@@ -238,21 +238,29 @@ public class LanguageParser extends Parser {
 	}
 
 	public static class AssignmentContext extends ParserRuleContext {
-		public TerminalNode VARIABLENAME() { return getToken(LanguageParser.VARIABLENAME, 0); }
-		public ExpressionContext expression() {
-			return getRuleContext(ExpressionContext.class,0);
-		}
 		public AssignmentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_assignment; }
+	 
+		public AssignmentContext() { }
+		public void copyFrom(AssignmentContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class AssignmentFuncContext extends AssignmentContext {
+		public TerminalNode VARIABLENAME() { return getToken(LanguageParser.VARIABLENAME, 0); }
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public AssignmentFuncContext(AssignmentContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterAssignment(this);
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterAssignmentFunc(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitAssignment(this);
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitAssignmentFunc(this);
 		}
 	}
 
@@ -260,13 +268,14 @@ public class LanguageParser extends Parser {
 		AssignmentContext _localctx = new AssignmentContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_assignment);
 		try {
+			_localctx = new AssignmentFuncContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(28);
-			match(VARIABLENAME);
-			setState(29);
-			match(T__0);
 			setState(30);
+			match(VARIABLENAME);
+			setState(31);
+			match(T__0);
+			setState(32);
 			expression();
 			}
 		}
@@ -314,7 +323,7 @@ public class LanguageParser extends Parser {
 			_localctx = new PrintFunctionCallContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(32);
+			setState(34);
 			printFunction();
 			}
 		}
@@ -356,13 +365,13 @@ public class LanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(34);
-			match(PRINT);
-			setState(35);
-			match(LPARENTHESIS);
 			setState(36);
-			expression();
+			match(PRINT);
 			setState(37);
+			match(LPARENTHESIS);
+			setState(38);
+			expression();
+			setState(39);
 			match(RPARENTHESIS);
 			}
 		}
@@ -424,36 +433,143 @@ public class LanguageParser extends Parser {
 			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitNumberExpression(this);
 		}
 	}
+	public static class AdditionFuncContext extends ExpressionContext {
+		public AdditionContext addition() {
+			return getRuleContext(AdditionContext.class,0);
+		}
+		public AdditionFuncContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterAdditionFunc(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitAdditionFunc(this);
+		}
+	}
+	public static class VariableExpressionContext extends ExpressionContext {
+		public TerminalNode VARIABLENAME() { return getToken(LanguageParser.VARIABLENAME, 0); }
+		public VariableExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterVariableExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitVariableExpression(this);
+		}
+	}
 
 	public final ExpressionContext expression() throws RecognitionException {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_expression);
 		try {
-			setState(42);
+			setState(46);
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case STRING:
-				_localctx = new StringExpressionContext(_localctx);
+			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
+			case 1:
+				_localctx = new AdditionFuncContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(39);
+				setState(41);
+				addition();
+				}
+				break;
+			case 2:
+				_localctx = new StringExpressionContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(42);
 				match(STRING);
 				}
 				break;
-			case NUMBER:
+			case 3:
 				_localctx = new NumberExpressionContext(_localctx);
-				enterOuterAlt(_localctx, 2);
+				enterOuterAlt(_localctx, 3);
 				{
-				setState(40);
+				setState(43);
 				match(NUMBER);
 				}
 				break;
-			case BOOL:
+			case 4:
 				_localctx = new BoolExpressionContext(_localctx);
-				enterOuterAlt(_localctx, 3);
+				enterOuterAlt(_localctx, 4);
 				{
-				setState(41);
+				setState(44);
 				match(BOOL);
+				}
+				break;
+			case 5:
+				_localctx = new VariableExpressionContext(_localctx);
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(45);
+				match(VARIABLENAME);
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class AdditionContext extends ParserRuleContext {
+		public List<TerminalNode> VARIABLENAME() { return getTokens(LanguageParser.VARIABLENAME); }
+		public TerminalNode VARIABLENAME(int i) {
+			return getToken(LanguageParser.VARIABLENAME, i);
+		}
+		public List<TerminalNode> NUMBER() { return getTokens(LanguageParser.NUMBER); }
+		public TerminalNode NUMBER(int i) {
+			return getToken(LanguageParser.NUMBER, i);
+		}
+		public AdditionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_addition; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterAddition(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitAddition(this);
+		}
+	}
+
+	public final AdditionContext addition() throws RecognitionException {
+		AdditionContext _localctx = new AdditionContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_addition);
+		try {
+			setState(54);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case VARIABLENAME:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(48);
+				match(VARIABLENAME);
+				setState(49);
+				match(T__1);
+				setState(50);
+				match(VARIABLENAME);
+				}
+				break;
+			case NUMBER:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(51);
+				match(NUMBER);
+				setState(52);
+				match(T__1);
+				setState(53);
+				match(NUMBER);
 				}
 				break;
 			default:
@@ -472,18 +588,21 @@ public class LanguageParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20/\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\7\2\20\n\2\f\2\16\2\23\13\2\3\2"+
-		"\3\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3\35\n\3\3\4\3\4\3\4\3\4\3\5\3\5\3\6\3"+
-		"\6\3\6\3\6\3\6\3\7\3\7\3\7\5\7-\n\7\3\7\2\2\b\2\4\6\b\n\f\2\2\2,\2\21"+
-		"\3\2\2\2\4\34\3\2\2\2\6\36\3\2\2\2\b\"\3\2\2\2\n$\3\2\2\2\f,\3\2\2\2\16"+
-		"\20\5\4\3\2\17\16\3\2\2\2\20\23\3\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2\22"+
-		"\24\3\2\2\2\23\21\3\2\2\2\24\25\7\2\2\3\25\3\3\2\2\2\26\27\5\b\5\2\27"+
-		"\30\7\7\2\2\30\35\3\2\2\2\31\32\5\6\4\2\32\33\7\7\2\2\33\35\3\2\2\2\34"+
-		"\26\3\2\2\2\34\31\3\2\2\2\35\5\3\2\2\2\36\37\7\13\2\2\37 \7\3\2\2 !\5"+
-		"\f\7\2!\7\3\2\2\2\"#\5\n\6\2#\t\3\2\2\2$%\7\4\2\2%&\7\5\2\2&\'\5\f\7\2"+
-		"\'(\7\6\2\2(\13\3\2\2\2)-\7\n\2\2*-\7\17\2\2+-\7\20\2\2,)\3\2\2\2,*\3"+
-		"\2\2\2,+\3\2\2\2-\r\3\2\2\2\5\21\34,";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20;\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\7\2\22\n\2\f\2\16\2\25"+
+		"\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3\37\n\3\3\4\3\4\3\4\3\4\3\5\3"+
+		"\5\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\5\7\61\n\7\3\b\3\b\3\b\3\b"+
+		"\3\b\3\b\5\b9\n\b\3\b\2\2\t\2\4\6\b\n\f\16\2\2\2:\2\23\3\2\2\2\4\36\3"+
+		"\2\2\2\6 \3\2\2\2\b$\3\2\2\2\n&\3\2\2\2\f\60\3\2\2\2\168\3\2\2\2\20\22"+
+		"\5\4\3\2\21\20\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23\24\3\2\2\2\24\26"+
+		"\3\2\2\2\25\23\3\2\2\2\26\27\7\2\2\3\27\3\3\2\2\2\30\31\5\b\5\2\31\32"+
+		"\7\b\2\2\32\37\3\2\2\2\33\34\5\6\4\2\34\35\7\b\2\2\35\37\3\2\2\2\36\30"+
+		"\3\2\2\2\36\33\3\2\2\2\37\5\3\2\2\2 !\7\f\2\2!\"\7\3\2\2\"#\5\f\7\2#\7"+
+		"\3\2\2\2$%\5\n\6\2%\t\3\2\2\2&\'\7\5\2\2\'(\7\6\2\2()\5\f\7\2)*\7\7\2"+
+		"\2*\13\3\2\2\2+\61\5\16\b\2,\61\7\13\2\2-\61\7\17\2\2.\61\7\20\2\2/\61"+
+		"\7\f\2\2\60+\3\2\2\2\60,\3\2\2\2\60-\3\2\2\2\60.\3\2\2\2\60/\3\2\2\2\61"+
+		"\r\3\2\2\2\62\63\7\f\2\2\63\64\7\4\2\2\649\7\f\2\2\65\66\7\17\2\2\66\67"+
+		"\7\4\2\2\679\7\17\2\28\62\3\2\2\28\65\3\2\2\29\17\3\2\2\2\6\23\36\608";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

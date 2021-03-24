@@ -8,17 +8,17 @@ SEMICOLON: ';';
 TRUE: 'true';
 FALSE: 'false';
 
-start 
+start
     : statement* EOF
     ;
 
 statement
     : functionCall SEMICOLON                            # generalFunctionCall
-    | assignment SEMICOLON                              # assingment
+    | assignment SEMICOLON                              # assignmentFunctionCall
     ;
 
 assignment
-    : VARIABLENAME '=' expression
+    : VARIABLENAME '=' expression                       # assignmentFunc
     ;
 
 functionCall
@@ -29,26 +29,26 @@ printFunction
     : PRINT LPARENTHESIS expression RPARENTHESIS
     ;
 
-expression 
-    : STRING                                            # stringExpression
+expression
+    : addition                                          # additionFunc
+    | STRING                                            # stringExpression
     | NUMBER                                            # numberExpression
     | BOOL                                              # boolExpression
+    | VARIABLENAME                                      # variableExpression
+    ;
+
+addition
+    : VARIABLENAME '+' VARIABLENAME
+    | NUMBER '+' NUMBER
     ;
 
 STRING
     : ["] ( ~["\r\n\\] | '\\' ~[\r\n] )* ["]
     | ['] ( ~['\r\n\\] | '\\' ~[\r\n] )* [']
-    ;   
+    ;
 
 VARIABLENAME
     : [a-zA-Z]+
-    ;    
-
-DATATYPE
-    : 'int'
-    | 'double'
-    | 'string'
-    | 'bool'
     ;
 
 COMMENT
