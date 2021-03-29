@@ -39,6 +39,8 @@ expression
     | division                                          # divisionFunc
     | multiplication                                    # multiplicationFunc
     | modulus                                           # modulusFunc
+    | square                                            # squareFunc
+    | squareRoot                                        # squareRootFunc
     ;
 
 addition
@@ -74,6 +76,16 @@ modulus
     | NUMBER '%' NUMBER
     | VARIABLENAME '%' NUMBER
     | NUMBER '%' VARIABLENAME
+    ;
+square
+    : VARIABLENAME '^' VARIABLENAME
+    | NUMBER '^' NUMBER
+    | VARIABLENAME '^' VARIABLENAME
+    | NUMBER '^' VARIABLENAME
+    ;
+squareRoot
+    : '/*' VARIABLENAME
+    | '/*' NUMBER
     ;
 
 STRING

@@ -53,10 +53,26 @@ public class Listener extends LanguageBaseListener
                 return;
             else if (value.contains("-"))
                 return;
+            else if (value.contains("*"))
+                return;
+            else if (value.contains("/"))
+                return;
+            else if (value.contains("%"))
+                return;
+            else if (value.contains("^"))
+                return;
+            else if (value.contains("/*"))
+                return;
             variableMap.put(variableName, value);
         }
     }
 
+
+    /*
+    * All the below functions cover arithmatic functionality of the programming language
+    */
+
+    // Addition function, takes String context and returns the final answer from the context into variableMap
     @Override
     public void exitAdditionFunc(LanguageParser.AdditionFuncContext context)
     {
@@ -83,6 +99,7 @@ public class Listener extends LanguageBaseListener
         }
     }
     
+    // Subtraction function, takes String context and returns the final answer from the context into variableMap
     @Override
     public void exitSubtractionFunc(LanguageParser.SubtractionFuncContext context) 
     {
@@ -99,51 +116,6 @@ public class Listener extends LanguageBaseListener
             num1 = getValue(key1);
             num2 = getValue(key2);
 
-            /*
-            // key1
-            try 
-            {
-                // Case 1, pure integer
-                num1 = Integer.parseInt(key1);
-            }
-            catch (NumberFormatException e)
-            {
-                if(variableMap.containsKey(key1)) 
-                { // If a variable does exist that matches
-                    
-                    try 
-                    {
-                        num1 = Integer.parseInt(variableMap.get(key1));
-                    } 
-                    catch (NumberFormatException exc) 
-                    { // num1 exists as variable but cannot be parsed
-                        exc.printStackTrace();
-                    }
-                }
-            } 
-            
-            // key2 var
-            try
-            { // is the second integer a pure integer?
-                num2 = Integer.parseInt(key2);
-            } 
-            catch (NumberFormatException e) 
-            {
-                
-                if (variableMap.containsKey(key2)) 
-                {
-                    try 
-                    {
-                        num2 = Integer.parseInt(variableMap.get(key2));
-                    } 
-                    catch (NumberFormatException exc) 
-                    {
-                        exc.printStackTrace();
-                    }
-                }
-            }
-            */
-
             // values exist and are integers (logic done in try-parse above)
             int sum = num1 - num2;
 
@@ -154,6 +126,7 @@ public class Listener extends LanguageBaseListener
         }
     }
 
+    // Multiplication function, takes String context and returns the final answer from the context into variableMap
     @Override
     public void exitMultiplicationFunc(LanguageParser.MultiplicationFuncContext context) 
     {
@@ -161,10 +134,24 @@ public class Listener extends LanguageBaseListener
             return;
         else 
         {
-            
+            String key1 = context.getChild(0).getChild(0).getText(); // num
+            String key2 = context.getChild(0).getChild(2).getText(); // secNum
+            int num1 = 0, num2 = 0;
+
+            num1 = getValue(key1);
+            num2 = getValue(key2);
+
+            // values exist and are integers (logic done in try-parse above)
+            int sum = num1 * num2;
+
+            String var = context.parent.getChild(0).getText(); // var = VARIABLENAME
+            String value = Integer.toString(sum); // value = sum of arithmatic 
+
+            variableMap.put(var, value); // Puts in hashmap
         }
     }
 
+    // Division function, takes String context and returns the final answer from the context into variableMap
     @Override
     public void exitDivisionFunc(LanguageParser.DivisionFuncContext context) 
     {
@@ -172,10 +159,24 @@ public class Listener extends LanguageBaseListener
             return;
         else 
         {
-            
+            String key1 = context.getChild(0).getChild(0).getText(); // num
+            String key2 = context.getChild(0).getChild(2).getText(); // secNum
+            int num1 = 0, num2 = 0;
+
+            num1 = getValue(key1);
+            num2 = getValue(key2);
+
+            // values exist and are integers (logic done in try-parse above)
+            int sum = num1 / num2;
+
+            String var = context.parent.getChild(0).getText(); // var = VARIABLENAME
+            String value = Integer.toString(sum); // value = sum of arithmatic 
+
+            variableMap.put(var, value); // Puts in hashmap
         }
     }
 
+    // Modulus function, takes String context and returns the final answer from the context into variableMap
     @Override
     public void exitModulusFunc(LanguageParser.ModulusFuncContext context) 
     {
@@ -183,10 +184,67 @@ public class Listener extends LanguageBaseListener
             return;
         else 
         {
-            
+            String key1 = context.getChild(0).getChild(0).getText(); // num
+            String key2 = context.getChild(0).getChild(2).getText(); // secNum
+            int num1 = 0, num2 = 0;
+
+            num1 = getValue(key1);
+            num2 = getValue(key2);
+
+            // values exist and are integers (logic done in try-parse above)
+            int sum = num1 % num2;
+
+            String var = context.parent.getChild(0).getText(); // var = VARIABLENAME
+            String value = Integer.toString(sum); // value = sum of arithmatic 
+
+            variableMap.put(var, value); // Puts in hashmap
         }
     }
 
+    @Override
+    public void exitSquareFunc(LanguageParser.SquareFuncContext context) {
+        if (context.isEmpty())
+            return;
+        else 
+        {
+            String key1 = context.getChild(0).getChild(0).getText(); // num
+            String key2 = context.getChild(0).getChild(2).getText(); // secNum
+            int num1 = 0, num2 = 0;
+
+            num1 = getValue(key1);
+            num2 = getValue(key2);
+
+            // values exist and are integers (logic done in try-parse above)
+            double sum = Math.pow(num1, num2); // Math.pow accepts two doubles so I just have it converted here
+
+            String var = context.parent.getChild(0).getText(); // var = VARIABLENAME
+            String value = Double.toString(sum); // value = sum of arithmatic 
+
+            variableMap.put(var, value); // Puts in hashmap
+        }
+    }
+
+    // Square root function. The syntax is '/* NUM' OR '/* VAR', it's a bit weird, but I wanted to spice it up a bit. 
+    @Override
+    public void exitSquareRootFunc(LanguageParser.SquareRootFuncContext context) {
+        if (context.isEmpty())
+            return;
+        else {
+            String key1 = context.getChild(0).getChild(1).getText(); // INT/VARIABLENAME
+            int num = 0;
+
+            num = getValue(key1);
+
+            double sum = Math.sqrt(num); // Square Root
+
+            String var = context.parent.getChild(0).getText();
+            String value = Double.toString(sum);
+            
+            variableMap.put(var, value);
+        }
+    }
+
+    // This functions allows us to parse the given string back into an integer. It's incredibly simplistic, but it's elegant when we do the same operation 500 thousand times above
     private int getValue(String key)
     {
         int parsedValue = 0; // Figurative int

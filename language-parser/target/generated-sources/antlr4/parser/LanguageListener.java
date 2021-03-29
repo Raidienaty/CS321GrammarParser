@@ -184,6 +184,30 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitModulusFunc(LanguageParser.ModulusFuncContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code squareFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSquareFunc(LanguageParser.SquareFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code squareFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSquareFunc(LanguageParser.SquareFuncContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code squareRootFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSquareRootFunc(LanguageParser.SquareRootFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code squareRootFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSquareRootFunc(LanguageParser.SquareRootFuncContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LanguageParser#addition}.
 	 * @param ctx the parse tree
 	 */
@@ -233,4 +257,24 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitModulus(LanguageParser.ModulusContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LanguageParser#square}.
+	 * @param ctx the parse tree
+	 */
+	void enterSquare(LanguageParser.SquareContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#square}.
+	 * @param ctx the parse tree
+	 */
+	void exitSquare(LanguageParser.SquareContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LanguageParser#squareRoot}.
+	 * @param ctx the parse tree
+	 */
+	void enterSquareRoot(LanguageParser.SquareRootContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#squareRoot}.
+	 * @param ctx the parse tree
+	 */
+	void exitSquareRoot(LanguageParser.SquareRootContext ctx);
 }

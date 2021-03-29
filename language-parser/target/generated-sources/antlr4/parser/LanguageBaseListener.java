@@ -196,6 +196,30 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSquareFunc(LanguageParser.SquareFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSquareFunc(LanguageParser.SquareFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSquareRootFunc(LanguageParser.SquareRootFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSquareRootFunc(LanguageParser.SquareRootFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAddition(LanguageParser.AdditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -251,6 +275,30 @@ public class LanguageBaseListener implements LanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitModulus(LanguageParser.ModulusContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSquare(LanguageParser.SquareContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSquare(LanguageParser.SquareContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSquareRoot(LanguageParser.SquareRootContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSquareRoot(LanguageParser.SquareRootContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

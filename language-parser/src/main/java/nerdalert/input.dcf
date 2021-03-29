@@ -7,4 +7,7 @@ string = "string";
 num = num + secNum;
 print(num);
 num = num - secNum;
-print(num);
+a = 3;
+b = 100;
+someVar = /* b;
+print(someVar);
