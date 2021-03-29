@@ -167,10 +167,10 @@ public class Listener extends LanguageBaseListener
             num2 = getValue(key2);
 
             // values exist and are integers (logic done in try-parse above)
-            int sum = num1 / num2;
+            double sum = (double) num1 / (double) num2;
 
             String var = context.parent.getChild(0).getText(); // var = VARIABLENAME
-            String value = Integer.toString(sum); // value = sum of arithmatic 
+            String value = Double.toString(sum); // value = sum of arithmatic 
 
             variableMap.put(var, value); // Puts in hashmap
         }
