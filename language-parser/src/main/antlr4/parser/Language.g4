@@ -20,24 +20,21 @@ assignment
     ;
 
 functionCall
-    : printFunction                                     # printFunctionCall
-    ;
-
-printFunction
-    : PRINT LPARENTHESIS expression RPARENTHESIS
+    : PRINT LPARENTHESIS expression RPARENTHESIS        # printFunctionCall
     ;
 
 expression
-    : addition                                          # additionFunc
-    | STRING                                            # stringExpression
+    : STRING                                            # stringExpression
     | NUMBER                                            # numberExpression
     | BOOL                                              # boolExpression
     | VARIABLENAME                                      # variableExpression
-    ;
-
-addition
-    : VARIABLENAME '+' VARIABLENAME
-    | NUMBER '+' NUMBER
+    | expression '+' expression                         # additionFunc
+    | expression '-' expression                         # subtractionFunc
+    | expression '/' expression                         # divisionFunc
+    | expression '*' expression                         # multiplicationFunc
+    | expression '%' expression                         # modulusFunc
+    | expression '^' expression                         # squareFunc
+    | 'sqrt' LPARENTHESIS expression RPARENTHESIS       # squareRootFunc
     ;
 
 STRING

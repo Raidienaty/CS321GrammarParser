@@ -76,25 +76,13 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrintFunction(LanguageParser.PrintFunctionContext ctx) { }
+	@Override public void enterModulusFunc(LanguageParser.ModulusFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrintFunction(LanguageParser.PrintFunctionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAdditionFunc(LanguageParser.AdditionFuncContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAdditionFunc(LanguageParser.AdditionFuncContext ctx) { }
+	@Override public void exitModulusFunc(LanguageParser.ModulusFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -112,13 +100,13 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNumberExpression(LanguageParser.NumberExpressionContext ctx) { }
+	@Override public void enterSquareFunc(LanguageParser.SquareFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNumberExpression(LanguageParser.NumberExpressionContext ctx) { }
+	@Override public void exitSquareFunc(LanguageParser.SquareFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -136,6 +124,54 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSquareRootFunc(LanguageParser.SquareRootFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSquareRootFunc(LanguageParser.SquareRootFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNumberExpression(LanguageParser.NumberExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumberExpression(LanguageParser.NumberExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAdditionFunc(LanguageParser.AdditionFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAdditionFunc(LanguageParser.AdditionFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDivisionFunc(LanguageParser.DivisionFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDivisionFunc(LanguageParser.DivisionFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariableExpression(LanguageParser.VariableExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -148,13 +184,25 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAddition(LanguageParser.AdditionContext ctx) { }
+	@Override public void enterMultiplicationFunc(LanguageParser.MultiplicationFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAddition(LanguageParser.AdditionContext ctx) { }
+	@Override public void exitMultiplicationFunc(LanguageParser.MultiplicationFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSubtractionFunc(LanguageParser.SubtractionFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSubtractionFunc(LanguageParser.SubtractionFuncContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

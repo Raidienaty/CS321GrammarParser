@@ -66,27 +66,17 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitPrintFunctionCall(LanguageParser.PrintFunctionCallContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link LanguageParser#printFunction}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrintFunction(LanguageParser.PrintFunctionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link LanguageParser#printFunction}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrintFunction(LanguageParser.PrintFunctionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code additionFunc}
+	 * Enter a parse tree produced by the {@code modulusFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterAdditionFunc(LanguageParser.AdditionFuncContext ctx);
+	void enterModulusFunc(LanguageParser.ModulusFuncContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code additionFunc}
+	 * Exit a parse tree produced by the {@code modulusFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitAdditionFunc(LanguageParser.AdditionFuncContext ctx);
+	void exitModulusFunc(LanguageParser.ModulusFuncContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code stringExpression}
 	 * labeled alternative in {@link LanguageParser#expression}.
@@ -100,17 +90,17 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitStringExpression(LanguageParser.StringExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code numberExpression}
+	 * Enter a parse tree produced by the {@code squareFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumberExpression(LanguageParser.NumberExpressionContext ctx);
+	void enterSquareFunc(LanguageParser.SquareFuncContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code numberExpression}
+	 * Exit a parse tree produced by the {@code squareFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumberExpression(LanguageParser.NumberExpressionContext ctx);
+	void exitSquareFunc(LanguageParser.SquareFuncContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code boolExpression}
 	 * labeled alternative in {@link LanguageParser#expression}.
@@ -124,6 +114,54 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitBoolExpression(LanguageParser.BoolExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code squareRootFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSquareRootFunc(LanguageParser.SquareRootFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code squareRootFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSquareRootFunc(LanguageParser.SquareRootFuncContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code numberExpression}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumberExpression(LanguageParser.NumberExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code numberExpression}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumberExpression(LanguageParser.NumberExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code additionFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAdditionFunc(LanguageParser.AdditionFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code additionFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAdditionFunc(LanguageParser.AdditionFuncContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code divisionFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDivisionFunc(LanguageParser.DivisionFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code divisionFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDivisionFunc(LanguageParser.DivisionFuncContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code variableExpression}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
@@ -136,13 +174,27 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitVariableExpression(LanguageParser.VariableExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link LanguageParser#addition}.
+	 * Enter a parse tree produced by the {@code multiplicationFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterAddition(LanguageParser.AdditionContext ctx);
+	void enterMultiplicationFunc(LanguageParser.MultiplicationFuncContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link LanguageParser#addition}.
+	 * Exit a parse tree produced by the {@code multiplicationFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitAddition(LanguageParser.AdditionContext ctx);
+	void exitMultiplicationFunc(LanguageParser.MultiplicationFuncContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code subtractionFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubtractionFunc(LanguageParser.SubtractionFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code subtractionFunc}
+	 * labeled alternative in {@link LanguageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubtractionFunc(LanguageParser.SubtractionFuncContext ctx);
 }
