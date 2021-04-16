@@ -6,3 +6,5 @@ secNum = 5;
 string = "string";
 num = num + secNum;
 print(num);
+num = sqrt(28);
+print(num);

@@ -1,6 +1,5 @@
 package nerdalert;
 
-import java.beans.Visibility;
 import java.util.HashMap;
 
 import parser.*;
@@ -13,6 +12,7 @@ import parser.LanguageParser.MultiplicationFuncContext;
 import parser.LanguageParser.NumberExpressionContext;
 import parser.LanguageParser.PowerFuncContext;
 import parser.LanguageParser.PrintFunctionCallContext;
+import parser.LanguageParser.SquareRootFuncContext;
 import parser.LanguageParser.SubtractionFuncContext;
 
 public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
@@ -43,7 +43,7 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
         String variable = context.getChild(0).getText();
         DecafValue value = getValue(context.getChild(2).getText());
 
-        if (value.asString().contains("+"))
+        if (value.asString().contains("+") || value.asString().contains("-") || value.asString().contains("*") || value.asString().contains("/") || value.asString().contains("%") || value.asString().contains("sqrt"))
         {
             return this.visit(context.expression());
         }
@@ -215,6 +215,19 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
         }
 
         variableMap.put(parentVariable.asString(), quotient);
+
+        return new DecafValue();
+    }
+
+    @Override
+    public DecafValue visitSquareRootFunc(SquareRootFuncContext context)
+    {
+        DecafValue sqrtContext = this.visit(context.expression());
+        DecafValue parentVariable = new DecafValue(context.getParent().getChild(0).getText());
+
+        double root = Math.sqrt(sqrtContext.asDouble());
+
+        variableMap.put(parentVariable.asString(), new DecafValue(root));
 
         return new DecafValue();
     }
