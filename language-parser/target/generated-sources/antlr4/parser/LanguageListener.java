@@ -90,17 +90,17 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitStringExpression(LanguageParser.StringExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code squareFunc}
+	 * Enter a parse tree produced by the {@code powerFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterSquareFunc(LanguageParser.SquareFuncContext ctx);
+	void enterPowerFunc(LanguageParser.PowerFuncContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code squareFunc}
+	 * Exit a parse tree produced by the {@code powerFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitSquareFunc(LanguageParser.SquareFuncContext ctx);
+	void exitPowerFunc(LanguageParser.PowerFuncContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code boolExpression}
 	 * labeled alternative in {@link LanguageParser#expression}.

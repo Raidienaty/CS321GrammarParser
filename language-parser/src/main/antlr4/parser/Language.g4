@@ -33,7 +33,7 @@ expression
     | expression '/' expression                         # divisionFunc
     | expression '*' expression                         # multiplicationFunc
     | expression '%' expression                         # modulusFunc
-    | expression '^' expression                         # squareFunc
+    | expression '^' expression                         # powerFunc
     | 'sqrt' LPARENTHESIS expression RPARENTHESIS       # squareRootFunc
     ;
 

@@ -422,25 +422,25 @@ public class LanguageParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class SquareFuncContext extends ExpressionContext {
+	public static class PowerFuncContext extends ExpressionContext {
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
-		public SquareFuncContext(ExpressionContext ctx) { copyFrom(ctx); }
+		public PowerFuncContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterSquareFunc(this);
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterPowerFunc(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitSquareFunc(this);
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitPowerFunc(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitSquareFunc(this);
+			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitPowerFunc(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -752,7 +752,7 @@ public class LanguageParser extends Parser {
 						break;
 					case 6:
 						{
-						_localctx = new SquareFuncContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new PowerFuncContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(62);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");

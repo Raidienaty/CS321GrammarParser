@@ -330,14 +330,14 @@ public class LanguageParser extends Parser {
 		public TerminalNode STRING() { return getToken(LanguageParser.STRING, 0); }
 		public StringExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 	}
-	public static class SquareFuncContext extends ExpressionContext {
+	public static class PowerFuncContext extends ExpressionContext {
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
-		public SquareFuncContext(ExpressionContext ctx) { copyFrom(ctx); }
+		public PowerFuncContext(ExpressionContext ctx) { copyFrom(ctx); }
 	}
 	public static class BoolExpressionContext extends ExpressionContext {
 		public TerminalNode BOOL() { return getToken(LanguageParser.BOOL, 0); }
@@ -543,7 +543,7 @@ public class LanguageParser extends Parser {
 						break;
 					case 6:
 						{
-						_localctx = new SquareFuncContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new PowerFuncContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(62);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");

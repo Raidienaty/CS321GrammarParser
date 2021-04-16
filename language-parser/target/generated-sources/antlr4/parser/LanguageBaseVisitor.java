@@ -66,7 +66,7 @@ public class LanguageBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSquareFunc(LanguageParser.SquareFuncContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPowerFunc(LanguageParser.PowerFuncContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

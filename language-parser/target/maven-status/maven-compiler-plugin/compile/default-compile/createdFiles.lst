@@ -16,15 +16,13 @@ parser/LanguageParser$ModulusFuncContext.class
 parser/LanguageParser$StartContext.class
 parser/LanguageParser$DivisionFuncContext.class
 parser/LanguageParser$MultiplicationFuncContext.class
-parser/LanguageParser$SquareFuncContext.class
 nerdalert/Listener.class
 parser/LanguageParser$SubtractionFuncContext.class
 parser/LanguageParser$StringExpressionContext.class
 parser/LanguageListener.class
-nerdalert/Main.class
 parser/LanguageParser$StatementContext.class
-nerdalert/EvalVisitor.class
 parser/LanguageVisitor.class
 parser/LanguageParser$VariableExpressionContext.class
 parser/LanguageParser$BoolExpressionContext.class
 parser/LanguageParser$AssignmentContext.class
+parser/LanguageParser$PowerFuncContext.class

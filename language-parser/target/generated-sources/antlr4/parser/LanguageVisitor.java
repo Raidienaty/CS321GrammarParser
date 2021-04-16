@@ -59,12 +59,12 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStringExpression(LanguageParser.StringExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code squareFunc}
+	 * Visit a parse tree produced by the {@code powerFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSquareFunc(LanguageParser.SquareFuncContext ctx);
+	T visitPowerFunc(LanguageParser.PowerFuncContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code boolExpression}
 	 * labeled alternative in {@link LanguageParser#expression}.

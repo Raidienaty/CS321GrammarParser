@@ -100,13 +100,13 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSquareFunc(LanguageParser.SquareFuncContext ctx) { }
+	@Override public void enterPowerFunc(LanguageParser.PowerFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSquareFunc(LanguageParser.SquareFuncContext ctx) { }
+	@Override public void exitPowerFunc(LanguageParser.PowerFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -8,8 +8,10 @@ import parser.LanguageParser.AdditionFuncContext;
 import parser.LanguageParser.AssignmentFuncContext;
 import parser.LanguageParser.BoolExpressionContext;
 import parser.LanguageParser.DivisionFuncContext;
+import parser.LanguageParser.ModulusFuncContext;
 import parser.LanguageParser.MultiplicationFuncContext;
 import parser.LanguageParser.NumberExpressionContext;
+import parser.LanguageParser.PowerFuncContext;
 import parser.LanguageParser.PrintFunctionCallContext;
 import parser.LanguageParser.SubtractionFuncContext;
 
@@ -152,6 +154,60 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
         else if (dividend.isDouble() && divisor.isDouble())
         {
             quotient = new DecafValue(dividend.asDouble() / divisor.asDouble());
+        }
+        else
+        {
+            throw new RuntimeException("Illegal division operation!");
+        }
+
+        variableMap.put(parentVariable.asString(), quotient);
+
+        return new DecafValue();
+    }
+
+    @Override
+    public DecafValue visitModulusFunc(ModulusFuncContext context)
+    {
+        DecafValue leftOperand = getValue(this.visit(context.expression(0)));
+        DecafValue rightOperand = getValue(this.visit(context.expression(1)));
+        DecafValue parentVariable = new DecafValue(context.getParent().getChild(0).getText());
+
+        DecafValue quotient;
+
+        if (leftOperand.isInt() && rightOperand.isInt())
+        {
+            quotient = new DecafValue(leftOperand.asInt() % rightOperand.asInt());
+        }
+        else if (leftOperand.isDouble() && rightOperand.isDouble())
+        {
+            quotient = new DecafValue(leftOperand.asDouble() % rightOperand.asDouble());
+        }
+        else
+        {
+            throw new RuntimeException("Illegal division operation!");
+        }
+
+        variableMap.put(parentVariable.asString(), quotient);
+
+        return new DecafValue();
+    }
+
+    @Override
+    public DecafValue visitPowerFunc(PowerFuncContext context)
+    {
+        DecafValue leftOperand = getValue(this.visit(context.expression(0)));
+        DecafValue rightOperand = getValue(this.visit(context.expression(1)));
+        DecafValue parentVariable = new DecafValue(context.getParent().getChild(0).getText());
+
+        DecafValue quotient;
+
+        if (leftOperand.isInt() && rightOperand.isInt())
+        {
+            quotient = new DecafValue(Math.pow(leftOperand.asInt(), rightOperand.asInt()));
+        }
+        else if (leftOperand.isDouble() && rightOperand.isDouble())
+        {
+            quotient = new DecafValue(Math.pow(leftOperand.asDouble(), rightOperand.asDouble()));
         }
         else
         {
