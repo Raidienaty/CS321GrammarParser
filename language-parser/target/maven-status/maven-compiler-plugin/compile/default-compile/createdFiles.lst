@@ -1,6 +1,3 @@
-parser/LanguageBaseVisitor.class
-parser/LanguageBaseListener.class
-parser/LanguageLexer.class
 parser/LanguageParser$GeneralFunctionCallContext.class
 parser/LanguageParser.class
 parser/LanguageParser$FunctionCallContext.class
@@ -8,7 +5,6 @@ parser/LanguageParser$PrintFunctionCallContext.class
 parser/LanguageParser$SquareRootFuncContext.class
 parser/LanguageParser$AdditionFuncContext.class
 parser/LanguageParser$ExpressionContext.class
-nerdalert/DecafValue.class
 parser/LanguageParser$NumberExpressionContext.class
 parser/LanguageParser$AssignmentFuncContext.class
 parser/LanguageParser$AssignmentFunctionCallContext.class
@@ -16,10 +12,8 @@ parser/LanguageParser$ModulusFuncContext.class
 parser/LanguageParser$StartContext.class
 parser/LanguageParser$DivisionFuncContext.class
 parser/LanguageParser$MultiplicationFuncContext.class
-nerdalert/Listener.class
 parser/LanguageParser$SubtractionFuncContext.class
 parser/LanguageParser$StringExpressionContext.class
-parser/LanguageListener.class
 parser/LanguageParser$StatementContext.class
 parser/LanguageVisitor.class
 parser/LanguageParser$VariableExpressionContext.class
