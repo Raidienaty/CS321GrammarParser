@@ -6,3 +6,8 @@ secNum = 5;
 string = "string";
 num = num + secNum;
 print(num);
+num = num - secNum;
+a = 100;
+b = 0;
+someVar = a / b;
+print(someVar);

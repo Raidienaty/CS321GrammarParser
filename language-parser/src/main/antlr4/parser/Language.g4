@@ -35,11 +35,57 @@ expression
     | NUMBER                                            # numberExpression
     | BOOL                                              # boolExpression
     | VARIABLENAME                                      # variableExpression
+    | subtraction                                       # subtractionFunc
+    | division                                          # divisionFunc
+    | multiplication                                    # multiplicationFunc
+    | modulus                                           # modulusFunc
+    | square                                            # squareFunc
+    | squareRoot                                        # squareRootFunc
     ;
 
 addition
     : VARIABLENAME '+' VARIABLENAME
     | NUMBER '+' NUMBER
+    | VARIABLENAME '+' NUMBER
+    | NUMBER '+' VARIABLENAME
+    ;
+
+subtraction
+    : VARIABLENAME '-' VARIABLENAME
+    | NUMBER '-' NUMBER
+    | VARIABLENAME '-' NUMBER
+    | NUMBER '-' VARIABLENAME
+    ;
+
+multiplication
+    : VARIABLENAME '*' VARIABLENAME
+    | NUMBER '*' NUMBER
+    | VARIABLENAME '*' NUMBER
+    | NUMBER '*' VARIABLENAME
+    ;
+
+division
+    : VARIABLENAME '/' VARIABLENAME
+    | NUMBER '/' NUMBER
+    | VARIABLENAME '/' NUMBER
+    | NUMBER '/' VARIABLENAME
+    ;
+
+modulus
+    : VARIABLENAME '%' VARIABLENAME
+    | NUMBER '%' NUMBER
+    | VARIABLENAME '%' NUMBER
+    | NUMBER '%' VARIABLENAME
+    ;
+square
+    : VARIABLENAME '^' VARIABLENAME
+    | NUMBER '^' NUMBER
+    | VARIABLENAME '^' VARIABLENAME
+    | NUMBER '^' VARIABLENAME
+    ;
+squareRoot
+    : '/*' VARIABLENAME
+    | '/*' NUMBER
     ;
 
 STRING
