@@ -28,12 +28,12 @@ public class DecafValue
 
     public int asInt()
     {
-        return (Integer) value;
+        return Integer.parseInt(this.value.toString());
     }
 
     public Double asDouble()
     {
-        return ((Number)value).doubleValue();
+        return Double.parseDouble(this.value.toString());
     }
 
     public String asString() {
@@ -103,12 +103,30 @@ public class DecafValue
 
     public boolean isInt()
     {
-        return value instanceof Integer;
+        try
+        {
+            Integer.parseInt(this.value.toString());
+
+            return true;
+        }
+        catch (NumberFormatException e)
+        {
+            return false;
+        }
     }
 
     public boolean isDouble()
     {
-        return value instanceof Double;
+        try
+        {
+            Double.parseDouble(this.value.toString());
+
+            return true;
+        }
+        catch(NumberFormatException e)
+        {
+            return false;
+        }
     }
 
     public boolean isString()
