@@ -10,6 +10,7 @@ import org.stringtemplate.v4.compiler.CodeGenerator.primary_return;
 
 import parser.*;
 import parser.LanguageParser.AdditionFuncContext;
+import parser.LanguageParser.AddOneFuncContext;
 import parser.LanguageParser.AndExpressionContext;
 import parser.LanguageParser.AssignmentFuncContext;
 import parser.LanguageParser.BoolExpressionContext;
@@ -17,6 +18,7 @@ import parser.LanguageParser.ComparisonExpressionContext;
 import parser.LanguageParser.DivisionFuncContext;
 import parser.LanguageParser.EquivalenceExpressionContext;
 import parser.LanguageParser.ForLoopContext;
+import parser.LanguageParser.ForLoopContextContext;
 import parser.LanguageParser.IfStatementContext;
 import parser.LanguageParser.ModulusFuncContext;
 import parser.LanguageParser.MultiplicationFuncContext;
@@ -27,6 +29,8 @@ import parser.LanguageParser.PrintFunctionCallContext;
 import parser.LanguageParser.OrExpressionContext;
 import parser.LanguageParser.SquareRootFuncContext;
 import parser.LanguageParser.SubtractionFuncContext;
+import parser.LanguageParser.SubtractOneFuncContext;
+import parser.LanguageParser.WhileLoopContext;
 
 public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
 {
@@ -107,6 +111,25 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
     }
 
     @Override
+    public DecafValue visitAddOneFunc(AddOneFuncContext context)
+    {
+        DecafValue variable = getValue(new DecafValue(context.getChild(0).getText()));
+        DecafValue newValue = new DecafValue();
+
+        if (variable.isInt()) {
+            newValue = new DecafValue(variable.asInt() + 1);
+        }
+        else if (variable.isDouble()) {
+            newValue = new DecafValue(variable.asDouble() + 1);
+        }
+        else {
+            throw new RuntimeException("Illegal addition operation!");
+        }
+        variableMap.put(context.VARIABLENAME().getText(), newValue);
+        return new DecafValue();
+    }
+
+    @Override
     public DecafValue visitSubtractionFunc(SubtractionFuncContext context)
     {
         DecafValue minuend = getValue(this.visit(context.expression(0)));
@@ -130,6 +153,25 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
 
         variableMap.put(parentVariable.asString(), difference);
 
+        return new DecafValue();
+    }
+
+    @Override
+    public DecafValue visitSubtractOneFunc(SubtractOneFuncContext context)
+    {
+        DecafValue variable = getValue(new DecafValue(context.getChild(0).getText()));
+        DecafValue newValue = new DecafValue();
+
+        if (variable.isInt()) {
+            newValue = new DecafValue(variable.asInt() - 1);
+        }
+        else if (variable.isDouble()) {
+            newValue = new DecafValue(variable.asDouble() - 1);
+        }
+        else {
+            throw new RuntimeException("Illegal subtraction operation!");
+        }
+        variableMap.put(context.VARIABLENAME().getText(), newValue);
         return new DecafValue();
     }
 
@@ -257,7 +299,33 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
     @Override
     public DecafValue visitForLoop(ForLoopContext context)
     {
-        return visitChildren(context);
+        ForLoopContextContext forLoopContext = context.forLoopContext();
+
+        this.visit(forLoopContext.assignment(0));
+        boolean conditionalStatement = this.visit(forLoopContext.expression()).asBoolean();
+
+        while (conditionalStatement) {
+            for (int i = 0; i < context.statement().size(); i++) {
+                this.visit(context.statement(i));
+            }
+            this.visit(forLoopContext.assignment(1));
+            conditionalStatement = this.visit(forLoopContext.expression()).asBoolean();
+        }
+        return new DecafValue();
+    }
+
+    @Override
+    public DecafValue visitWhileLoop(WhileLoopContext context)
+    {
+        boolean conditionalStatement = this.visit(context.expression()).asBoolean();
+
+        while (conditionalStatement) {
+            for (int i = 0; i < context.statement().size(); i++) {
+                this.visit(context.statement(i));
+            }
+            conditionalStatement = this.visit(context.expression()).asBoolean();
+        }
+        return new DecafValue();
     }
 
     @Override
@@ -267,7 +335,9 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
 
         if (ifStatementContext)
         {
-            return this.visit(context.ifStatementContext().statement());
+            for (int i = 0; i < context.ifStatementContext().statement().size(); i++) {
+                this.visit(context.ifStatementContext().statement(i));
+            }
         }
 
         int numElseIfs = context.elseIf().size();
@@ -278,7 +348,9 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
 
             if (elseIfStatementContext)
             {
-                return this.visit(context.elseIf(i).statement());
+                for (int j = 0; j < context.elseIf(i).statement().size(); j++) {
+                    this.visit(context.elseIf(i).statement(i));
+                }
             }
         }
 
@@ -286,7 +358,9 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
 
         if (elseStatement)
         {
-            return this.visit(context.elseStatement().statement());
+            for (int i = 0; i < context.elseStatement().statement().size(); i++) {
+                this.visit(context.elseStatement().statement(i));
+            }
         }
 
         return new DecafValue();
