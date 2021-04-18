@@ -36,19 +36,32 @@ public class AppTest
         tokens.fill();
         return tokens.getTokens();    
     }
-    /**
-     * Rigorous Test :-)
-     */
+
     @Test
-    public void assignmentTest() throws IOException
+    public void assignmentLexerTest() throws IOException
     {
         List<Token> tokens = getTokensFromText("var = 1;");
 
         assertEquals(tokens.size(), 5);
         assertEquals(LanguageLexer.VARIABLENAME, tokens.get(0).getType());
-        //assertEquals(LanguageLexer., tokens.get(0).getType());
+        assertEquals(LanguageLexer.ASSIGNMENT, tokens.get(1).getType());
         assertEquals(LanguageLexer.NUMBER, tokens.get(2).getType());
         assertEquals(LanguageLexer.SEMICOLON, tokens.get(3).getType());
         assertEquals(LanguageLexer.EOF, tokens.get(4).getType());
+    }
+
+    @Test
+    public void printLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("print(\"A string literal\");");
+
+        assertEquals(tokens.size(), 6);
+        assertEquals(LanguageLexer.PRINT, tokens.get(0).getType());
+        assertEquals(LanguageLexer.LPARENTHESIS, tokens.get(1).getType());
+        assertEquals(LanguageLexer.STRING, tokens.get(2).getType());
+        assertEquals(LanguageLexer.RPARENTHESIS, tokens.get(3).getType());
+        assertEquals(LanguageLexer.SEMICOLON, tokens.get(4).getType());
+        assertEquals(LanguageLexer.EOF, tokens.get(5).getType());
+
     }
 }
