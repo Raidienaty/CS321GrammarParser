@@ -6,6 +6,7 @@ import parser.*;
 
 public class Listener extends LanguageBaseListener
 {
+    /*
     private HashMap<String, String> variableMap = new HashMap<String, String>();
     @Override
     public void exitPrintFunctionCall(LanguageParser.PrintFunctionCallContext context)
@@ -80,4 +81,6 @@ public class Listener extends LanguageBaseListener
             variableMap.put(variable, value);
         }
     }
+
+    */
 }

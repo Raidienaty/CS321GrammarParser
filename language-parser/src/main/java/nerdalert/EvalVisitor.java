@@ -2,15 +2,21 @@ package nerdalert;
 
 import java.util.HashMap;
 
+import org.antlr.v4.runtime.misc.EqualityComparator;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.stringtemplate.v4.compiler.CodeGenerator.primary_return;
 
 import parser.*;
 import parser.LanguageParser.AdditionFuncContext;
 import parser.LanguageParser.AssignmentFuncContext;
 import parser.LanguageParser.BoolExpressionContext;
+import parser.LanguageParser.ComparisonExpressionContext;
 import parser.LanguageParser.DivisionFuncContext;
+import parser.LanguageParser.EquivalenceExpressionContext;
+import parser.LanguageParser.IfStatementContext;
 import parser.LanguageParser.ModulusFuncContext;
 import parser.LanguageParser.MultiplicationFuncContext;
+import parser.LanguageParser.NotExpressionContext;
 import parser.LanguageParser.NumberExpressionContext;
 import parser.LanguageParser.PowerFuncContext;
 import parser.LanguageParser.PrintFunctionCallContext;
@@ -235,6 +241,64 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
     }
 
     @Override
+    public DecafValue visitIfStatement(IfStatementContext context)
+    {
+        boolean ifStatementContext = this.visit(context.ifStatementContext().expression()).asBoolean();
+
+        return new DecafValue();
+    }
+
+    @Override
+    public DecafValue visitEquivalenceExpression(EquivalenceExpressionContext context)
+    {
+        int operator = context.op.getType();
+
+        switch(operator)
+        {
+            case LanguageLexer.EQUIVALENT:
+                return equivalenceOperator(context);
+            case LanguageLexer.NOTEQUIVALENT:
+                return notEquivalenceOperator(context);
+
+            default:
+                break;
+        }
+
+        return new DecafValue();
+    }
+
+    @Override
+    public DecafValue visitComparisonExpression(ComparisonExpressionContext context)
+    {
+        int operator = context.op.getType();
+
+        switch(operator)
+        {
+            case LanguageLexer.LESSTHAN:
+                return lessThanOperator(context);
+            case LanguageLexer.GREATERTHAN:
+                return greaterThanOperator(context);
+            case LanguageLexer.LESSTHANEQUALS:
+                return lessThanOrEqualOperator(context);
+            case LanguageLexer.GREATERTHANEQUALS:
+                return greaterThanOrEqualOperator(context);
+
+            default:
+                break;
+        }
+
+        return new DecafValue();
+    }
+
+    @Override
+    public DecafValue visitNotExpression(NotExpressionContext context)
+    {
+        DecafValue boolValue = this.visit(context.expression());
+
+        return new DecafValue(!boolValue.asBoolean());
+    }
+
+    @Override
     public DecafValue visitNumberExpression(NumberExpressionContext context)
     {
         return new DecafValue(context.getChild(0).getText());
@@ -277,6 +341,98 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
     // {
     //     if (value.contains("+"))
     // }
+
+    private DecafValue equivalenceOperator(EquivalenceExpressionContext context)
+    {
+        DecafValue leftOperand = getValue(this.visit(context.expression(0)));
+        DecafValue rightOperand = getValue(this.visit(context.expression(1)));
+
+        return new DecafValue(leftOperand.equals(rightOperand));
+    }
+
+    private DecafValue notEquivalenceOperator(EquivalenceExpressionContext context)
+    {
+        DecafValue leftOperand = getValue(this.visit(context.expression(0)));
+        DecafValue rightOperand = getValue(this.visit(context.expression(1)));
+
+        return new DecafValue(!leftOperand.equals(rightOperand));
+    }
+
+    private DecafValue lessThanOperator(ComparisonExpressionContext context)
+    {
+        DecafValue leftOperand = getValue(this.visit(context.expression(0)));
+        DecafValue rightOperand = getValue(this.visit(context.expression(1)));
+
+        if (leftOperand.isInt() && rightOperand.isInt())
+        {
+            return new DecafValue(leftOperand.asInt() < rightOperand.asInt());
+        }
+        else if (leftOperand.isDouble() && rightOperand.isDouble())
+        {
+            return new DecafValue(leftOperand.asDouble() < rightOperand.asDouble());
+        }
+        else
+        {
+            throw new RuntimeException("You cannot compare these types!");
+        }
+    }
+
+    private DecafValue greaterThanOperator(ComparisonExpressionContext context)
+    {
+        DecafValue leftOperand = getValue(this.visit(context.expression(0)));
+        DecafValue rightOperand = getValue(this.visit(context.expression(1)));
+
+        if (leftOperand.isInt() && rightOperand.isInt())
+        {
+            return new DecafValue(leftOperand.asInt() > rightOperand.asInt());
+        }
+        else if (leftOperand.isDouble() && rightOperand.isDouble())
+        {
+            return new DecafValue(leftOperand.asDouble() > rightOperand.asDouble());
+        }
+        else
+        {
+            throw new RuntimeException("You cannot compare these types!");
+        }
+    }
+
+    private DecafValue lessThanOrEqualOperator(ComparisonExpressionContext context)
+    {
+        DecafValue leftOperand = getValue(this.visit(context.expression(0)));
+        DecafValue rightOperand = getValue(this.visit(context.expression(1)));
+
+        if (leftOperand.isInt() && rightOperand.isInt())
+        {
+            return new DecafValue(leftOperand.asInt() <= rightOperand.asInt());
+        }
+        else if (leftOperand.isDouble() && rightOperand.isDouble())
+        {
+            return new DecafValue(leftOperand.asDouble() <= rightOperand.asDouble());
+        }
+        else
+        {
+            throw new RuntimeException("You cannot compare these types!");
+        }
+    }
+
+    private DecafValue greaterThanOrEqualOperator(ComparisonExpressionContext context)
+    {
+        DecafValue leftOperand = getValue(this.visit(context.expression(0)));
+        DecafValue rightOperand = getValue(this.visit(context.expression(1)));
+
+        if (leftOperand.isInt() && rightOperand.isInt())
+        {
+            return new DecafValue(leftOperand.asInt() >= rightOperand.asInt());
+        }
+        else if (leftOperand.isDouble() && rightOperand.isDouble())
+        {
+            return new DecafValue(leftOperand.asDouble() >= rightOperand.asDouble());
+        }
+        else
+        {
+            throw new RuntimeException("You cannot compare these types!");
+        }
+    }
 
     private DecafValue getValue(String key)
     {
