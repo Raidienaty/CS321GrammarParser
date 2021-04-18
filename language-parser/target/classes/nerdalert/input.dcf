@@ -8,3 +8,16 @@ num = num + secNum;
 print(num);
 num = sqrt(28);
 print(num);
+
+if (2 == 5)
+{
+    print("Hello world!");
+}
+else if (secNum > 20)
+{
+    print("It was the second one!");
+}
+else
+{
+    print("num");
+}
