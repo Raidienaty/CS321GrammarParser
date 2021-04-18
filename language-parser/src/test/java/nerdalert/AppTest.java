@@ -64,4 +64,95 @@ public class AppTest
         assertEquals(LanguageLexer.EOF, tokens.get(5).getType());
 
     }
+
+    @Test
+    public void additionLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("var = 1+2;");
+
+        assertEquals(tokens.size(), 7);
+        assertEquals(LanguageLexer.VARIABLENAME, tokens.get(0).getType());
+        assertEquals(LanguageLexer.ASSIGNMENT, tokens.get(1).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(2).getType());
+        assertEquals(LanguageLexer.ADD, tokens.get(3).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(4).getType());
+        assertEquals(LanguageLexer.SEMICOLON, tokens.get(5).getType());
+        assertEquals(LanguageLexer.EOF, tokens.get(6).getType());
+    }
+
+    @Test
+    public void subtractionLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("var = 1-2;");
+
+        assertEquals(tokens.size(), 7);
+        assertEquals(LanguageLexer.VARIABLENAME, tokens.get(0).getType());
+        assertEquals(LanguageLexer.ASSIGNMENT, tokens.get(1).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(2).getType());
+        assertEquals(LanguageLexer.SUBTRACT, tokens.get(3).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(4).getType());
+        assertEquals(LanguageLexer.SEMICOLON, tokens.get(5).getType());
+        assertEquals(LanguageLexer.EOF, tokens.get(6).getType());
+    }
+
+    @Test
+    public void multiplicationLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("var = 1*2;");
+
+        assertEquals(tokens.size(), 7);
+        assertEquals(LanguageLexer.VARIABLENAME, tokens.get(0).getType());
+        assertEquals(LanguageLexer.ASSIGNMENT, tokens.get(1).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(2).getType());
+        assertEquals(LanguageLexer.MULTIPLY, tokens.get(3).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(4).getType());
+        assertEquals(LanguageLexer.SEMICOLON, tokens.get(5).getType());
+        assertEquals(LanguageLexer.EOF, tokens.get(6).getType());
+    }
+
+    @Test
+    public void divisionLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("var = 1/2;");
+
+        assertEquals(tokens.size(), 7);
+        assertEquals(LanguageLexer.VARIABLENAME, tokens.get(0).getType());
+        assertEquals(LanguageLexer.ASSIGNMENT, tokens.get(1).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(2).getType());
+        assertEquals(LanguageLexer.DIVIDE, tokens.get(3).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(4).getType());
+        assertEquals(LanguageLexer.SEMICOLON, tokens.get(5).getType());
+        assertEquals(LanguageLexer.EOF, tokens.get(6).getType());
+    }
+
+    @Test
+    public void modulusLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("var = 1%2;");
+
+        assertEquals(tokens.size(), 7);
+        assertEquals(LanguageLexer.VARIABLENAME, tokens.get(0).getType());
+        assertEquals(LanguageLexer.ASSIGNMENT, tokens.get(1).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(2).getType());
+        assertEquals(LanguageLexer.MODULUS, tokens.get(3).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(4).getType());
+        assertEquals(LanguageLexer.SEMICOLON, tokens.get(5).getType());
+        assertEquals(LanguageLexer.EOF, tokens.get(6).getType());
+    }
+
+    @Test
+    public void powerLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("var = 1^2;");
+
+        assertEquals(tokens.size(), 7);
+        assertEquals(LanguageLexer.VARIABLENAME, tokens.get(0).getType());
+        assertEquals(LanguageLexer.ASSIGNMENT, tokens.get(1).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(2).getType());
+        assertEquals(LanguageLexer.POWER, tokens.get(3).getType());
+        assertEquals(LanguageLexer.NUMBER, tokens.get(4).getType());
+        assertEquals(LanguageLexer.SEMICOLON, tokens.get(5).getType());
+        assertEquals(LanguageLexer.EOF, tokens.get(6).getType());
+    }
+
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="nerdalert.AppTest" time="0.035" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="nerdalert.AppTest" time="0.041" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
@@ -14,7 +14,7 @@
     <property name="os.name" value="Linux"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/ttt/repos/CS321GrammarParser/language-parser/target/surefire/surefirebooter3129490568829905478.jar /home/ttt/repos/CS321GrammarParser/language-parser/target/surefire 2021-04-18T10-39-45_434-jvmRun1 surefire10564771718475839983tmp surefire_04927886182209243904tmp"/>
+    <property name="sun.java.command" value="/home/ttt/repos/CS321GrammarParser/language-parser/target/surefire/surefirebooter2892989009762998041.jar /home/ttt/repos/CS321GrammarParser/language-parser/target/surefire 2021-04-18T10-54-42_371-jvmRun1 surefire5322763766871003841tmp surefire_08952897897682757271tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/ttt/repos/CS321GrammarParser/language-parser/target/test-classes:/home/ttt/repos/CS321GrammarParser/language-parser/target/classes:/home/ttt/.m2/repository/org/antlr/antlr4-runtime/4.9/antlr4-runtime-4.9.jar:/home/ttt/.m2/repository/org/antlr/antlr4/4.9/antlr4-4.9.jar:/home/ttt/.m2/repository/org/antlr/antlr-runtime/3.5.2/antlr-runtime-3.5.2.jar:/home/ttt/.m2/repository/org/antlr/ST4/4.3/ST4-4.3.jar:/home/ttt/.m2/repository/org/abego/treelayout/org.abego.treelayout.core/1.0.3/org.abego.treelayout.core-1.0.3.jar:/home/ttt/.m2/repository/org/glassfish/javax.json/1.0.4/javax.json-1.0.4.jar:/home/ttt/.m2/repository/com/ibm/icu/icu4j/61.1/icu4j-61.1.jar:/home/ttt/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/ttt/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/ttt/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.4.2/junit-jupiter-api-5.4.2.jar:/home/ttt/.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar:/home/ttt/.m2/repository/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar:/home/ttt/.m2/repository/org/junit/platform/junit-platform-commons/1.4.2/junit-platform-commons-1.4.2.jar:/home/ttt/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.4.2/junit-jupiter-engine-5.4.2.jar:/home/ttt/.m2/repository/org/junit/platform/junit-platform-engine/1.4.2/junit-platform-engine-1.4.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/ttt/repos/CS321GrammarParser/language-parser/target/surefire/surefirebooter3129490568829905478.jar"/>
+    <property name="surefire.real.class.path" value="/home/ttt/repos/CS321GrammarParser/language-parser/target/surefire/surefirebooter2892989009762998041.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.10+9-Ubuntu-0ubuntu1.20.04"/>
     <property name="user.name" value="ttt"/>
@@ -55,6 +55,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="assignmentLexerTest" classname="nerdalert.AppTest" time="0.028"/>
-  <testcase name="printLexerTest" classname="nerdalert.AppTest" time="0.001"/>
+  <testcase name="additionLexerTest" classname="nerdalert.AppTest" time="0.028"/>
+  <testcase name="modulusLexerTest" classname="nerdalert.AppTest" time="0"/>
+  <testcase name="multiplicationLexerTest" classname="nerdalert.AppTest" time="0"/>
+  <testcase name="powerLexerTest" classname="nerdalert.AppTest" time="0"/>
+  <testcase name="subtractionLexerTest" classname="nerdalert.AppTest" time="0"/>
+  <testcase name="assignmentLexerTest" classname="nerdalert.AppTest" time="0"/>
+  <testcase name="printLexerTest" classname="nerdalert.AppTest" time="0.002"/>
+  <testcase name="divisionLexerTest" classname="nerdalert.AppTest" time="0"/>
 </testsuite>
