@@ -61,6 +61,12 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitElseStatement(LanguageParser.ElseStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LanguageParser#forLoop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForLoop(LanguageParser.ForLoopContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code modulusFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree

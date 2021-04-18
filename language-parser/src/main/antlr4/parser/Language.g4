@@ -34,6 +34,7 @@ statement
     : functionCall SEMICOLON
     | assignment SEMICOLON
     | ifStatement
+    | forLoop
     ;
 
 assignment
@@ -58,6 +59,10 @@ elseIf
 
 elseStatement
     : 'else' '{' ( statement )? '}'
+    ;
+
+forLoop
+    : 'for' LPARENTHESIS assignment SEMICOLON expression SEMICOLON expression RPARENTHESIS
     ;
 
 expression

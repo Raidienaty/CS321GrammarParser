@@ -16,6 +16,7 @@ import parser.LanguageParser.BoolExpressionContext;
 import parser.LanguageParser.ComparisonExpressionContext;
 import parser.LanguageParser.DivisionFuncContext;
 import parser.LanguageParser.EquivalenceExpressionContext;
+import parser.LanguageParser.ForLoopContext;
 import parser.LanguageParser.IfStatementContext;
 import parser.LanguageParser.ModulusFuncContext;
 import parser.LanguageParser.MultiplicationFuncContext;
@@ -251,6 +252,12 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
         variableMap.put(parentVariable.asString(), new DecafValue(root));
 
         return new DecafValue();
+    }
+
+    @Override
+    public DecafValue visitForLoop(ForLoopContext context)
+    {
+        return visitChildren(context);
     }
 
     @Override

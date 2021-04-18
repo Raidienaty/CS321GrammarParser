@@ -92,6 +92,16 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitElseStatement(LanguageParser.ElseStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LanguageParser#forLoop}.
+	 * @param ctx the parse tree
+	 */
+	void enterForLoop(LanguageParser.ForLoopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#forLoop}.
+	 * @param ctx the parse tree
+	 */
+	void exitForLoop(LanguageParser.ForLoopContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code modulusFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
