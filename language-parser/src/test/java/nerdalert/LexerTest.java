@@ -170,16 +170,16 @@ public class LexerTest
     {
         List<Token> tokens = getTokensFromText("if(true){print(\"true\");}else{print(\"false\");}");
 
-        assertEquals(tokens.size(), 20);
         assertEquals(LanguageLexer.ELSE, tokens.get(11).getType());
+        assertEquals(LanguageLexer.LBRACE, tokens.get(12).getType());
+        assertEquals(LanguageLexer.RBRACE, tokens.get(18).getType());
+
     }
 
     @Test
     public void elifLexerTest() throws IOException
     {
         List<Token> tokens = getTokensFromText("if(true){print(\"true\");}else if(false){print(\"false\");}");
-
-        assertEquals(tokens.size(), 23);
 
         assertEquals(LanguageLexer.ELIF, tokens.get(11).getType());
         assertEquals(LanguageLexer.LPARENTHESIS, tokens.get(12).getType());
@@ -194,7 +194,6 @@ public class LexerTest
     {
         List<Token> tokens = getTokensFromText("if(true == true){print(\"true\");}");
 
-        assertEquals(tokens.size(), 14);
         assertEquals(LanguageLexer.EQUIVALENT, tokens.get(3).getType());
     }
     @Test
@@ -202,7 +201,6 @@ public class LexerTest
     {
         List<Token> tokens = getTokensFromText("if(1 != 2){print(\"true\");}");
 
-        assertEquals(tokens.size(), 14);
         assertEquals(LanguageLexer.NOTEQUIVALENT, tokens.get(3).getType());
     }
 
@@ -211,7 +209,6 @@ public class LexerTest
     {
         List<Token> tokens = getTokensFromText("if(!true){print(\"true\");}");
 
-        assertEquals(tokens.size(), 13);
         assertEquals(LanguageLexer.NOT, tokens.get(2).getType());
     }
 
@@ -221,7 +218,6 @@ public class LexerTest
     {
         List<Token> tokens = getTokensFromText("if(1 < 2){print(\"true\");}");
 
-        assertEquals(tokens.size(), 14);
         assertEquals(LanguageLexer.LESSTHAN, tokens.get(3).getType());
     }
 
@@ -230,7 +226,6 @@ public class LexerTest
     {
         List<Token> tokens = getTokensFromText("if(1 > 2){print(\"true\");}");
 
-        assertEquals(tokens.size(), 14);
         assertEquals(LanguageLexer.GREATERTHAN, tokens.get(3).getType());
     }
 
@@ -239,7 +234,6 @@ public class LexerTest
     {
         List<Token> tokens = getTokensFromText("if(1 <= 2){print(\"true\");}");
 
-        assertEquals(tokens.size(), 14);
         assertEquals(LanguageLexer.LESSTHANEQUALS, tokens.get(3).getType());
     }
 
@@ -248,7 +242,6 @@ public class LexerTest
     {
         List<Token> tokens = getTokensFromText("if(1 >= 2){print(\"true\");}");
 
-        assertEquals(tokens.size(), 14);
         assertEquals(LanguageLexer.GREATERTHANEQUALS, tokens.get(3).getType());
     }
 
@@ -267,6 +260,4 @@ public class LexerTest
 
         assertEquals(LanguageLexer.OR, tokens.get(3).getType());
     }
-
-
 }
