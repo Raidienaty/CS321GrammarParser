@@ -40,6 +40,30 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitAssignmentFunc(LanguageParser.AssignmentFuncContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code addOneFunc}
+	 * labeled alternative in {@link LanguageParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAddOneFunc(LanguageParser.AddOneFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code addOneFunc}
+	 * labeled alternative in {@link LanguageParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddOneFunc(LanguageParser.AddOneFuncContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code subtractOneFunc}
+	 * labeled alternative in {@link LanguageParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubtractOneFunc(LanguageParser.SubtractOneFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code subtractOneFunc}
+	 * labeled alternative in {@link LanguageParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubtractOneFunc(LanguageParser.SubtractOneFuncContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code printFunctionCall}
 	 * labeled alternative in {@link LanguageParser#functionCall}.
 	 * @param ctx the parse tree
@@ -92,6 +116,36 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitElseStatement(LanguageParser.ElseStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LanguageParser#forLoop}.
+	 * @param ctx the parse tree
+	 */
+	void enterForLoop(LanguageParser.ForLoopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#forLoop}.
+	 * @param ctx the parse tree
+	 */
+	void exitForLoop(LanguageParser.ForLoopContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LanguageParser#forLoopContext}.
+	 * @param ctx the parse tree
+	 */
+	void enterForLoopContext(LanguageParser.ForLoopContextContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#forLoopContext}.
+	 * @param ctx the parse tree
+	 */
+	void exitForLoopContext(LanguageParser.ForLoopContextContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LanguageParser#whileLoop}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileLoop(LanguageParser.WhileLoopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#whileLoop}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileLoop(LanguageParser.WhileLoopContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code modulusFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
 	 * @param ctx the parse tree
@@ -127,18 +181,6 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBoolExpression(LanguageParser.BoolExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code subtractOneFunc}
-	 * labeled alternative in {@link LanguageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterSubtractOneFunc(LanguageParser.SubtractOneFuncContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code subtractOneFunc}
-	 * labeled alternative in {@link LanguageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitSubtractOneFunc(LanguageParser.SubtractOneFuncContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code squareRootFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.
@@ -283,18 +325,6 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDivisionFunc(LanguageParser.DivisionFuncContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code addOneFunc}
-	 * labeled alternative in {@link LanguageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAddOneFunc(LanguageParser.AddOneFuncContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code addOneFunc}
-	 * labeled alternative in {@link LanguageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAddOneFunc(LanguageParser.AddOneFuncContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code subtractionFunc}
 	 * labeled alternative in {@link LanguageParser#expression}.

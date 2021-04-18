@@ -34,10 +34,14 @@ statement
     : functionCall SEMICOLON
     | assignment SEMICOLON
     | ifStatement
+    | forLoop
+    | whileLoop
     ;
 
 assignment
     : VARIABLENAME '=' expression                           # assignmentFunc
+    | VARIABLENAME '++'                                     # addOneFunc
+    | VARIABLENAME '--'                                     # subtractOneFunc
     ;
 
 functionCall
@@ -49,15 +53,27 @@ ifStatement
     ;
 
 ifStatementContext
-    : 'if' LPARENTHESIS expression RPARENTHESIS '{' (statement)? '}'
+    : 'if' LPARENTHESIS expression RPARENTHESIS '{' (statement)* '}'
     ;
 
 elseIf
-    : 'else if' LPARENTHESIS expression RPARENTHESIS '{' (statement)? '}'
+    : 'else if' LPARENTHESIS expression RPARENTHESIS '{' (statement)* '}'
     ;
 
 elseStatement
-    : 'else' '{' ( statement )? '}'
+    : 'else' '{' ( statement )* '}'
+    ;
+
+forLoop
+    : 'for' LPARENTHESIS forLoopContext RPARENTHESIS '{' (statement)* '}'
+    ;
+
+forLoopContext
+    : assignment SEMICOLON expression SEMICOLON assignment
+    ;
+
+whileLoop
+    : 'while' LPARENTHESIS expression RPARENTHESIS '{' (statement)* '}'
     ;
 
 expression
@@ -66,9 +82,7 @@ expression
     | BOOL                                                  # boolExpression
     | VARIABLENAME                                          # variableExpression
     | expression '+' expression                             # additionFunc
-    | VARIABLENAME '++'                                     # addOneFunc
     | expression '-' expression                             # subtractionFunc
-    | VARIABLENAME '--'                                     # subtractOneFunc
     | expression '*' expression                             # multiplicationFunc
     | expression '/' expression                             # divisionFunc
     | expression '%' expression                             # modulusFunc

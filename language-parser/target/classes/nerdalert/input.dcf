@@ -7,6 +7,7 @@ string = "string";
 num = num + secNum;
 print(num);
 num = sqrt(28);
+num--;
 print(num);
 
 if (2 == 5)
@@ -20,4 +21,13 @@ else if (secNum > 20)
 else
 {
     print("num");
+}
+
+for (i = 0; i < 4; i++)
+{
+    print("Oww, why?");
+}
+while (num > 0) {
+    print("The time stopper");
+    num--;
 }
