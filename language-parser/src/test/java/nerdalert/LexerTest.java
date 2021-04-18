@@ -165,4 +165,108 @@ public class LexerTest
         assertEquals(LanguageLexer.RBRACE, tokens.get(10).getType());
     }
 
+    @Test
+    public void elseLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(true){print(\"true\");}else{print(\"false\");}");
+
+        assertEquals(tokens.size(), 20);
+        assertEquals(LanguageLexer.ELSE, tokens.get(11).getType());
+    }
+
+    @Test
+    public void elifLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(true){print(\"true\");}else if(false){print(\"false\");}");
+
+        assertEquals(tokens.size(), 23);
+
+        assertEquals(LanguageLexer.ELIF, tokens.get(11).getType());
+        assertEquals(LanguageLexer.LPARENTHESIS, tokens.get(12).getType());
+        assertEquals(LanguageLexer.BOOL, tokens.get(13).getType());
+        assertEquals(LanguageLexer.RPARENTHESIS, tokens.get(14).getType());
+        assertEquals(LanguageLexer.LBRACE, tokens.get(15).getType());
+        assertEquals(LanguageLexer.RBRACE, tokens.get(21).getType());
+    }
+
+    @Test
+    public void equalsLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(true == true){print(\"true\");}");
+
+        assertEquals(tokens.size(), 14);
+        assertEquals(LanguageLexer.EQUIVALENT, tokens.get(3).getType());
+    }
+    @Test
+    public void notEqualLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(1 != 2){print(\"true\");}");
+
+        assertEquals(tokens.size(), 14);
+        assertEquals(LanguageLexer.NOTEQUIVALENT, tokens.get(3).getType());
+    }
+
+    @Test
+    public void notLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(!true){print(\"true\");}");
+
+        assertEquals(tokens.size(), 13);
+        assertEquals(LanguageLexer.NOT, tokens.get(2).getType());
+    }
+
+
+    @Test
+    public void strictlyLessThanLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(1 < 2){print(\"true\");}");
+
+        assertEquals(tokens.size(), 14);
+        assertEquals(LanguageLexer.LESSTHAN, tokens.get(3).getType());
+    }
+
+    @Test
+    public void strictlyGreaterThanLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(1 > 2){print(\"true\");}");
+
+        assertEquals(tokens.size(), 14);
+        assertEquals(LanguageLexer.GREATERTHAN, tokens.get(3).getType());
+    }
+
+    @Test
+    public void lessThanOrEqualLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(1 <= 2){print(\"true\");}");
+
+        assertEquals(tokens.size(), 14);
+        assertEquals(LanguageLexer.LESSTHANEQUALS, tokens.get(3).getType());
+    }
+
+    @Test
+    public void greaterThanOrEqualLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(1 >= 2){print(\"true\");}");
+
+        assertEquals(tokens.size(), 14);
+        assertEquals(LanguageLexer.GREATERTHANEQUALS, tokens.get(3).getType());
+    }
+
+    @Test
+    public void andLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(true && true){print(\"true\");}");
+
+        assertEquals(LanguageLexer.AND, tokens.get(3).getType());
+    }
+
+    @Test
+    public void orLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(true || false){print(\"true\");}");
+
+        assertEquals(LanguageLexer.OR, tokens.get(3).getType());
+    }
+
+
 }
