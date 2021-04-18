@@ -151,4 +151,18 @@ public class LexerTest
         assertEquals(LanguageLexer.EOF, tokens.get(6).getType());
     }
 
+    @Test
+    public void ifLexerTest() throws IOException
+    {
+        List<Token> tokens = getTokensFromText("if(true){print(\"true\");}");
+
+        assertEquals(tokens.size(), 12);
+        assertEquals(LanguageLexer.IF, tokens.get(0).getType());
+        assertEquals(LanguageLexer.LPARENTHESIS, tokens.get(1).getType());
+        assertEquals(LanguageLexer.BOOL, tokens.get(2).getType());
+        assertEquals(LanguageLexer.RPARENTHESIS, tokens.get(3).getType());
+        assertEquals(LanguageLexer.LBRACE, tokens.get(4).getType());
+        assertEquals(LanguageLexer.RBRACE, tokens.get(10).getType());
+    }
+
 }

@@ -16,6 +16,11 @@ MODULUS: '%';
 POWER: '^';
 
 //if statement tokens
+IF: 'if';
+ELIF: 'else if';
+ELSE: 'else';
+LBRACE: '{';
+RBRACE: '}';
 OR: '||';
 AND: '&&';
 EQUIVALENT: '==';
@@ -49,15 +54,15 @@ ifStatement
     ;
 
 ifStatementContext
-    : 'if' LPARENTHESIS expression RPARENTHESIS '{' (statement)? '}'
+    : IF LPARENTHESIS expression RPARENTHESIS LBRACE (statement)? RBRACE
     ;
 
 elseIf
-    : 'else if' LPARENTHESIS expression RPARENTHESIS '{' (statement)? '}'
+    : ELIF LPARENTHESIS expression RPARENTHESIS LBRACE (statement)? RBRACE
     ;
 
 elseStatement
-    : 'else' '{' ( statement )? '}'
+    : ELSE LBRACE ( statement )? RBRACE
     ;
 
 expression
@@ -86,6 +91,11 @@ STRING
     | ['] ( ~['\r\n\\] | '\\' ~[\r\n] )* [']
     ;
 
+BOOL
+    : 'true'
+    | 'false'
+    ;
+
 VARIABLENAME
     : [a-zA-Z]+
     ;
@@ -100,11 +110,6 @@ WHITESPACE
 
 NUMBER
     : INT ( '.' DIGIT+ )?
-    ;
-
-BOOL
-    : 'true'
-    | 'false'
     ;
 
 fragment INT
