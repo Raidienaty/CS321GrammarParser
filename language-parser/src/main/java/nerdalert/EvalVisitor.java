@@ -10,6 +10,7 @@ import org.stringtemplate.v4.compiler.CodeGenerator.primary_return;
 
 import parser.*;
 import parser.LanguageParser.AdditionFuncContext;
+import parser.LanguageParser.AndExpressionContext;
 import parser.LanguageParser.AssignmentFuncContext;
 import parser.LanguageParser.BoolExpressionContext;
 import parser.LanguageParser.ComparisonExpressionContext;
@@ -22,6 +23,7 @@ import parser.LanguageParser.NotExpressionContext;
 import parser.LanguageParser.NumberExpressionContext;
 import parser.LanguageParser.PowerFuncContext;
 import parser.LanguageParser.PrintFunctionCallContext;
+import parser.LanguageParser.OrExpressionContext;
 import parser.LanguageParser.SquareRootFuncContext;
 import parser.LanguageParser.SubtractionFuncContext;
 
@@ -331,6 +333,24 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
         DecafValue boolValue = this.visit(context.expression());
 
         return new DecafValue(!boolValue.asBoolean());
+    }
+
+    @Override
+    public DecafValue visitOrExpression(OrExpressionContext context)
+    {
+        DecafValue leftValue = this.visit(context.expression(0));
+        DecafValue rightValue = this.visit(context.expression(1));
+
+        return new DecafValue(leftValue.asBoolean() || rightValue.asBoolean());
+    }
+
+    @Override
+    public DecafValue visitAndExpression(AndExpressionContext context)
+    {
+        DecafValue leftValue = this.visit(context.expression(0));
+        DecafValue rightValue = this.visit(context.expression(1));
+
+        return new DecafValue(leftValue.asBoolean() && rightValue.asBoolean());
     }
 
     @Override
