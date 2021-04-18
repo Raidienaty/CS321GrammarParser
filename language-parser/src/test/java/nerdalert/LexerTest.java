@@ -20,7 +20,7 @@ import parser.*;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class LexerTest 
 {
 
     private List<Token> getTokensFromText(String txt){
