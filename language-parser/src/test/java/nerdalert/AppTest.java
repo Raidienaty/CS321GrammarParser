@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,26 +24,24 @@ import parser.*;
 public class AppTest 
 {
 
+    private CommonTokenStream getTokensFromText(String txt){
+        CharStream stream = CharStreams.fromString(txt);
+        Lexer lexer = new LanguageLexer(stream);
+
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+        tokens.fill();
+        return tokens;    
+    }
     /**
      * Rigorous Test :-)
      */
     @Test
-    @DisplayName("Testing that testing runs")
-    public void shouldAnswerWithTrue()
+    @DisplayName("Basic Lexer Tests")
+    public void tokenTest() throws IOException
     {
-        assertTrue( true );
-    }
-    @Test
-    public void setVariable() throws IOException
-    {
-        CharStream inputCharStream = CharStreams.fromFileName("language-parser/src/test/java/nerdalert/varTest.dcf");
-        Lexer lexer = new LanguageLexer(inputCharStream);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        LanguageParser parser = new LanguageParser(tokens);
-        ParseTree parseTree = parser.start();
-    
-        EvalVisitor visitor = new EvalVisitor();
-    
-        assertTrue(visitor.visit(parseTree) == "1");
+        CommonTokenStream tokens = getTokensFromText("var = 1;");
+
+        assertEquals(tokens.size(), 5);
     }
 }
