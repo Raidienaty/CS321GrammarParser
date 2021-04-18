@@ -2,6 +2,8 @@ package nerdalert;
 
 import java.util.HashMap;
 
+import org.stringtemplate.v4.compiler.CodeGenerator.primary_return;
+
 import parser.*;
 import parser.LanguageParser.AdditionFuncContext;
 import parser.LanguageParser.AssignmentFuncContext;
@@ -270,6 +272,11 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
 
         return string;
     }
+
+    // private boolean checkForComplexExpressions(String value) //TODO: Refactor complex expression handling
+    // {
+    //     if (value.contains("+"))
+    // }
 
     private DecafValue getValue(String key)
     {
