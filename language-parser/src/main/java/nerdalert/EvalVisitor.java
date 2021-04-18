@@ -2,6 +2,8 @@ package nerdalert;
 
 import java.util.HashMap;
 
+import com.ibm.icu.text.CurrencyPluralInfo;
+
 import org.antlr.v4.runtime.misc.EqualityComparator;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.stringtemplate.v4.compiler.CodeGenerator.primary_return;
@@ -36,9 +38,18 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
             return new DecafValue();
         }
 
+        String printContextString = context.getChild(2).getChild(0).getText();
         DecafValue printContext = this.visit(context.expression());
+        DecafValue printDecafValue;
 
-        DecafValue printDecafValue = getValue(printContext);
+        if (!(printContextString.contains("'") || printContextString.contains("\"")))
+        {
+            printDecafValue = getValue(printContext);
+        }
+        else
+        {
+            printDecafValue = printContext;
+        }
 
         System.out.println(printDecafValue.asString());
 
@@ -244,6 +255,30 @@ public class EvalVisitor extends LanguageBaseVisitor<DecafValue>
     public DecafValue visitIfStatement(IfStatementContext context)
     {
         boolean ifStatementContext = this.visit(context.ifStatementContext().expression()).asBoolean();
+
+        if (ifStatementContext)
+        {
+            return this.visit(context.ifStatementContext().statement());
+        }
+
+        int numElseIfs = context.elseIf().size();
+
+        for (int i = 0; i < numElseIfs; i++)
+        {
+            boolean elseIfStatementContext = this.visit(context.elseIf(i).expression()).asBoolean();
+
+            if (elseIfStatementContext)
+            {
+                return this.visit(context.elseIf(i).statement());
+            }
+        }
+
+        boolean elseStatement = context.elseStatement() != null ? true : false;
+
+        if (elseStatement)
+        {
+            return this.visit(context.elseStatement().statement());
+        }
 
         return new DecafValue();
     }
